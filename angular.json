@@ -121,8 +121,15 @@
               "devServerTarget": "tesoreriaEquidad:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
-    }},
-  "defaultProject": "tesoreriaEquidad"
+    }
+  },
+  "defaultProject": "tesoreriaEquidad",
+  "cli": {
+    "analytics": false
+  }
 }
