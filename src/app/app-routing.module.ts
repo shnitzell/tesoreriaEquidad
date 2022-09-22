@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ResultadosFacturasComponent } from './pages/resultados-facturas/resultados-facturas.component';
 
 import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {
-    path: '**',
-    redirectTo: 'search',
-    pathMatch: 'full',  
-  }, 
-  {
     path: 'search',
-    component: SearchComponent, 
+    component: SearchComponent,
+  },
+  {
+    path: 'results',
+    component: ResultadosFacturasComponent
+  },
+  // {
+  //   path: 'landing',
+  //   component: LandingComponent
+  // }, 
+  {
+    path: '**',
+    redirectTo: 'search'
   },
 ];
 
