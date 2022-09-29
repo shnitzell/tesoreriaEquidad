@@ -67,9 +67,9 @@ export class ResultadosFacturasComponent implements OnInit {
   }
 
   pagarCon(metodo, modal = null) {
+    const reference = this.service.generateUUID();
     switch (metodo) {
       case 'wompi':
-        const reference = this.service.generateUUID();
         console.log('referencia: ' + reference, `${environment.host}/transaccion?check=wompi&rID=${reference}`);
         var checkout = new WidgetCheckout({
           currency: 'COP',
