@@ -104,7 +104,7 @@ export class ResultadosFacturasComponent implements OnInit {
           currency: "COP",
           payment_methods: ["transfer"],
           inTestEnvironment: true,
-          callback_url: "https://192.168.243.32:8080/pagos/respuesta.jsf"
+          callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`
         });
 
         break;
