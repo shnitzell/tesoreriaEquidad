@@ -20,7 +20,6 @@ export class ResultadosFacturasComponent implements OnInit {
 
   public clienteName: string = "";
   public polizas: any = [];
-  public sistematizacion: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, config: NgbModalConfig, private modalService: NgbModal,
     private service: ApiService, private sharing: SharingService) {
@@ -70,11 +69,14 @@ export class ResultadosFacturasComponent implements OnInit {
   pagarCon(metodo, modal = null) {
     switch (metodo) {
       case 'wompi':
+        const reference = this.service.generateUUID();
+        console.log('referencia: ' + reference, `${environment.host}/transaccion?check=wompi&rID=${reference}`);
         var checkout = new WidgetCheckout({
           currency: 'COP',
           amountInCents: this.sumarDeudaSeleccionada() * 100,
-          reference: this.service.generateUUID(),
-          publicKey: environment.wompiKey
+          reference: reference,
+          publicKey: environment.wompiKey,
+          redirectUrl: `${environment.host}/transaccion?check=wompi&rID=${reference}`
         });
 
         checkout.open(function (result) {

@@ -64,21 +64,17 @@
                 </tbody>
                 <tfoot style="font-weight: bolder;text-align: right;" *ngIf="polizas.length > 0">
                     <tr class="noBordertd">
-                        <td colspan="6">Deuda total a la fecha</td>
+                        <td colspan="6">Total cartera</td>
                         <td>{{ sumarDeuda() | currency }}</td> <!-- Total -->
                         <td></td>
                     </tr>
                     <tr class="noBordertd">
-                        <td colspan="6">Deuda seleccionada
+                        <td colspan="6">Cartera seleccionada
                         <td>{{ sumarDeudaSeleccionada() | currency }}</td> <!-- Total -->
                     </tr>
                     <tr class="noBordertd">
-                        <td colspan="6">Sistematización (+) </td>
-                        <td>{{ sistematizacion | currency }}</td>
-                    </tr>
-                    <tr class="noBordertd">
                         <td colspan="6">Total a pagar </td>
-                        <td>{{ sumarDeudaSeleccionada() -- sistematizacion | currency }}</td>
+                        <td>{{ sumarDeudaSeleccionada() | currency }}</td>
                     </tr>
                 </tfoot>
             </table>

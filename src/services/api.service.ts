@@ -79,7 +79,7 @@ export class ApiService {
         Swal.close();
     }
 
-    async doRequest(url, params, callBack, type, headers: any = {}) {
+    async doRequest(url, params, callBack, type, headers: any = {}, fallback = null) {
 
         let load = {
             title: 'Cargando',
@@ -96,32 +96,31 @@ export class ApiService {
         if (!params.hasOwnProperty("DisableLoad")) Swal.fire(load);
         if (typeof params == "string") if (!params.includes("DisableLoad")) Swal.fire(load);
 
+        const errorHandler = (er) => {
+            let disableEr = false;
+            if (params.hasOwnProperty("DisableEr")) disableEr = true;
+            if (typeof params == "string") if (params.includes("DisableEr")) disableEr = true;
+            try {
+                er = JSON.stringify(er);
+                if (!disableEr) this.presentToast("Error: ", er, "error");
+            } catch (e) {
+                if (!disableEr) this.presentToast("Error: ", er, "error");
+            }
+            fallback && fallback(er);
+        }
+
         switch (type.toUpperCase()) {
+
             case 'GET':
                 this.httpClient.get(url, headers)
                     .pipe(map(resp => resp))
-                    .subscribe(callBack, er => {
-                        this.presentToast("Error: ", er, "error");
-                        //Swal.close();
-                    }, () => {
-                        //Swal.close();
-                    });
+                    .subscribe(callBack, errorHandler);
                 break;
 
             case 'POST':
                 this.httpClient.post(url, params, headers)
                     .pipe(map(resp => resp))
-                    .subscribe(callBack, er => {
-                        try {
-                            er = JSON.stringify(er);
-                            this.presentToast("Error: ", er, "error");
-                        } catch (e) {
-                            this.presentToast("Error: ", er, "error");
-                        }
-                        //Swal.close();                               
-                    }, () => {
-                        //Swal.close();
-                    });
+                    .subscribe(callBack, errorHandler);
                 break;
         }
 
@@ -139,6 +138,14 @@ export class ApiService {
 
     getFacturas(userData: string, callBack) {
         this.doRequest(`${this.api}/consultas/consultarPoliza.php?numeroId=${userData}`, { DisableLoad: true }, callBack, 'get', { headers: this.getUserClaims() });
+    }
+
+    getEstadoTransaccionWompi(transaction_id: string, callBack, fallback) {
+        this.doRequest(`${environment.wompiServer}/transactions/${transaction_id}`, { DisableLoad: true, DisableEr: true }, callBack, 'get', {}, fallback);
+    }
+
+    notifyWompiBack(transactionData: any) {
+        this.doRequest(`${environment.api}/aplicarRecaudo/aplicarWompi`, { DisableLoad: true, DisableEr: true, ...transactionData }, () => { }, 'post');
     }
 
 }

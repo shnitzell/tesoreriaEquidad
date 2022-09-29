@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ResultadosFacturasComponent } from './pages/resultados-facturas/resultados-facturas.component';
 
 import { SearchComponent } from './pages/search/search.component';
+import { TransaccionComponent } from './pages/transaccion/transaccion.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'results',
     component: ResultadosFacturasComponent
+  },
+  {
+    path: 'transaccion',
+    component: TransaccionComponent
   },
   // {
   //   path: 'landing',

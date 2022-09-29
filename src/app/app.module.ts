@@ -12,6 +12,7 @@ import { FooterComponent } from './pages/shared/footer/footer.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ResultadosFacturasComponent } from './pages/resultados-facturas/resultados-facturas.component';
 import { SharingService } from 'src/services/sharing.service';
+import { TransaccionComponent } from './pages/transaccion/transaccion.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharingService } from 'src/services/sharing.service';
     HeaderComponent,
     FooterComponent,
     SearchComponent,
-    ResultadosFacturasComponent
+    ResultadosFacturasComponent,
+    TransaccionComponent
   ],
   imports: [
     BrowserModule,
