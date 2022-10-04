@@ -84,21 +84,27 @@ export class ResultadosFacturasComponent implements OnInit {
 
   pagarCon(metodo, modal = null) {
     const reference = this.service.generateUUID();
+    let polizasAPagar = [];
+    for (let poliza of this.polizas) {
+      for (let detalle of poliza.detalle) {
+        if (detalle.permite && detalle.selected) {
+          polizasAPagar.push(detalle);
+        }
+      }
+    }
+
+    const transaccion = {
+      rID: reference,
+      wID: '117653-1664468208-49142',
+      jsonPolizas: JSON.stringify(polizasAPagar),
+    };
+
     switch (metodo) {
       case 'wompi':
         console.log(
           'referencia: ' + reference,
           `${environment.host}/transaccion?check=wompi&rID=${reference}`
         );
-
-        let polizasAPagar = [];
-        for (let poliza of this.polizas) {
-          for (let detalle of poliza.detalle) {
-            if (detalle.permite && detalle.selected) {
-              polizasAPagar.push(detalle);
-            }
-          }
-        }
 
         var checkout = new WidgetCheckout({
           currency: 'COP',
@@ -107,12 +113,6 @@ export class ResultadosFacturasComponent implements OnInit {
           publicKey: environment.wompiKey,
           redirectUrl: `${environment.host}/transaccion?check=wompi&rID=${reference}`,
         });
-
-        const transaccion = {
-          rID: 'a066d177-d4cd-4414-8acc-1742c7f72ce0',
-          wID: '117653-1664468208-49142',
-          jsonPolizas: JSON.stringify(polizasAPagar),
-        };
 
         const asyncCall = new Promise((resolve, reject) =>
           this.service.crearTransaccionWompi(transaccion, resolve, reject)
@@ -141,20 +141,34 @@ export class ResultadosFacturasComponent implements OnInit {
 
         this.modalService.open(modal);
 
-        var kushki = new KushkiCheckout({
-          form: 'kushki-pay-form',
-          merchant_id: '1000000530206406278515561278883',
-          amount: {
-            subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
-            iva: 0, // Set it to 0 in case the transaction has no taxes
-            subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
-            ice: 0, // Set it to 0 in case the transaction has no ICE (Impuesto a consumos especiales)
-          },
-          currency: 'COP',
-          payment_methods: ['transfer'],
-          inTestEnvironment: true,
-          callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
-        });
+        const asyncCall2 = new Promise((resolve, reject) =>
+          this.service.crearTransaccionWompi(transaccion, resolve, reject)
+        );
+
+        asyncCall2
+          .then(() => {
+            var kushki = new KushkiCheckout({
+              form: 'kushki-pay-form',
+              merchant_id: '1000000530206406278515561278883',
+              amount: {
+                subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
+                iva: 0, // Set it to 0 in case the transaction has no taxes
+                subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
+                ice: 0, // Set it to 0 in case the transaction has no ICE (Impuesto a consumos especiales)
+              },
+              currency: 'COP',
+              payment_methods: ['transfer'],
+              inTestEnvironment: true,
+              callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
+            });
+          })
+          .catch(() =>
+            this.service.presentToast(
+              '¡Atención!',
+              'No podemos comunicarnos con la pasarela en estos momentos',
+              'warning'
+            )
+          );
 
         break;
       case 'bancoomeva':
