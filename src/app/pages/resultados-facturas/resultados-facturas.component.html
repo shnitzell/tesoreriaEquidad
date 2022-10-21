@@ -1,96 +1,138 @@
 <ng-template #asignarVend let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Pago con Kushki</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <h4>(Puede tardar un rato en cargar)</h4>
-        <form id="kushki-pay-form" action="confirm" method="post">
-            <input type="hidden" name="cart_id" value="123">
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Cancel click')">Cancelar</button>
-    </div>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Pago con Kushki</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <h4>(Puede tardar un rato en cargar)</h4>
+    <form id="kushki-pay-form" action="confirm" method="post">
+      <input type="hidden" name="cart_id" value="123" />
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="c('Cancel click')"
+    >
+      Cancelar
+    </button>
+  </div>
 </ng-template>
 
-<div class="container d-flex justify-content-center text-center h-100 my-5" style="max-height: 60vh;">
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Reporte detallado de pólizas del cliente {{ clienteName }}</h4>
-        </div>
-        <div class="card-body">
-            <h4>Listado de pólizas de pago de contado disponibles para pago</h4>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">
-                            <span class="input-group-text selectable" (click)="selectall()">
-                                <i class="ni ni-check-bold"></i>
-                            </span>
-                        </th>
-                        <th scope="col">Agencia</th>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Póliza</th>
-                        <th scope="col">Certificado</th>
-                        <th scope="col">Fecha limite de pago</th>
-                        <th scope="col">Valor</th>
-                        <th scope="col">Descargue para pago en bancos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let poliza of polizas">
-                        <tr *ngFor="let detalle of poliza.detalle">
-                            <th scope="row">
-                                <input type="checkbox" class="inputCheck" [(ngModel)]="detalle.selected"
-                                    (click)="totalChanged()" [disabled]="!detalle.permite">
-                            </th>
-                            <th>{{ poliza.aseguradora }}</th>
-                            <td>{{ detalle.producto }}</td>
-                            <td>{{ detalle.poliza }}</td>
-                            <td>{{ detalle.certif }}</td>
-                            <td>{{ detalle['fecha maxima'] }}</td>
-                            <td>{{ detalle.pago | currency }}</td>
-                            <td>
-                                <button type="button" style="margin: 0;padding: 0;"
-                                    [style.color]="detalle.cur == ''? '': 'green'"
-                                    class="btn btn-round btn-default btn-simple btn-icon no-caret"
-                                    [disabled]="detalle.cur == ''">
-                                    <i style="font-size: 35px;" class="ni ni-cloud-download-95"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-                <tfoot style="font-weight: bolder;text-align: right;" *ngIf="polizas.length > 0">
-                    <tr class="noBordertd">
-                        <td colspan="6">Total cartera</td>
-                        <td>{{ sumarDeuda() | currency }}</td> <!-- Total -->
-                        <td></td>
-                    </tr>
-                    <tr class="noBordertd">
-                        <td colspan="6">Cartera seleccionada
-                        <td>{{ sumarDeudaSeleccionada() | currency }}</td> <!-- Total -->
-                    </tr>
-                    <tr class="noBordertd">
-                        <td colspan="6">Total a pagar </td>
-                        <td>{{ sumarDeudaSeleccionada() | currency }}</td>
-                    </tr>
-                </tfoot>
-            </table>
-            <div class="alert alert-info" style="margin: 15px;" *ngIf="polizas.length == 0">
-                <span>No hay polizas pendientes de pago</span>
-            </div>
-            <div class="row">
-                <button class="btn btn-outline-success col-3 mr-3 offset-md-2" (click)="pagarCon('wompi')"
-                    [disabled]="sumarDeudaSeleccionada() == 0">Pagar con Wompi</button>
-                <button class="btn btn-outline-success col-3 mr-3" (click)="pagarCon('kushki', asignarVend)"
-                    [disabled]="sumarDeudaSeleccionada() == 0">Pagar con
-                    Kushki</button>
-                <button class="btn btn-outline-success col-3" (click)="pagarCon('bancoomeva')"
-                    [disabled]="sumarDeudaSeleccionada() == 0">Pagar con
-                    Bancoomeva</button>
-            </div>
-        </div>
+<div
+  class="container d-flex justify-content-center text-center h-100 my-5"
+  style="max-height: 60vh"
+>
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">
+        Reporte detallado de pólizas del cliente {{ clienteName }}
+      </h4>
     </div>
+    <div class="card-body">
+      <h4>Listado de pólizas de pago de contado disponibles para pago</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">
+              <span class="input-group-text selectable" (click)="selectall()">
+                <i class="ni ni-check-bold"></i>
+              </span>
+            </th>
+            <th scope="col">Agencia</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Póliza</th>
+            <th scope="col">Certificado</th>
+            <th scope="col">Fecha limite de pago</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Descargue para pago en bancos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let poliza of polizas">
+            <tr *ngFor="let detalle of poliza.detalle">
+              <th scope="row">
+                <input
+                  type="checkbox"
+                  class="inputCheck"
+                  [(ngModel)]="detalle.selected"
+                  (click)="totalChanged()"
+                  [disabled]="!detalle.permite"
+                />
+              </th>
+              <th>{{ poliza.aseguradora }}</th>
+              <td>{{ detalle.producto }}</td>
+              <td>{{ detalle.poliza }}</td>
+              <td>{{ detalle.certif }}</td>
+              <td>{{ detalle["fecha maxima"] }}</td>
+              <td>{{ detalle.pago | currency }}</td>
+              <td>
+                <button
+                  type="button"
+                  style="margin: 0; padding: 0"
+                  [style.color]="detalle.cur == '' ? '' : 'green'"
+                  class="btn btn-round btn-default btn-simple btn-icon no-caret"
+                  [disabled]="detalle.cur == ''"
+                >
+                  <i
+                    style="font-size: 35px"
+                    class="ni ni-cloud-download-95"
+                  ></i>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot
+          style="font-weight: bolder; text-align: right"
+          *ngIf="polizas.length > 0"
+        >
+          <tr class="noBordertd">
+            <td colspan="6">Total cartera</td>
+            <td>{{ sumarDeuda() | currency }}</td>
+            <!-- Total -->
+            <td></td>
+          </tr>
+          <tr class="noBordertd">
+            <td colspan="6">Cartera seleccionada</td>
+            <td>{{ sumarDeudaSeleccionada() | currency }}</td>
+            <!-- Total -->
+          </tr>
+          <tr class="noBordertd">
+            <td colspan="6">Total a pagar</td>
+            <td>{{ sumarDeudaSeleccionada() | currency }}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div
+        class="alert alert-info"
+        style="margin: 15px"
+        *ngIf="polizas.length == 0"
+      >
+        <span>No hay polizas pendientes de pago</span>
+      </div>
+      <div class="row">
+        <button
+          class="btn btn-outline-success col-3 mr-3 offset-md-2"
+          (click)="pagarCon('wompi')"
+          [disabled]="sumarDeudaSeleccionada() == 0"
+        >
+          Pagar con Wompi
+        </button>
+        <button
+          class="btn btn-outline-success col-3 mr-3"
+          (click)="pagarCon('kushki', asignarVend)"
+          [disabled]="sumarDeudaSeleccionada() == 0"
+        >
+          Pagar con Kushki
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

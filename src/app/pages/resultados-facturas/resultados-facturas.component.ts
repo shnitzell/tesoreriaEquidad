@@ -171,13 +171,6 @@ export class ResultadosFacturasComponent implements OnInit {
           );
 
         break;
-      case 'bancoomeva':
-        this.service.presentToast(
-          '¡Atención!',
-          'No podemos comunicarnos con la pasarela en estos momentos',
-          'warning'
-        );
-        break;
     }
   }
 }
