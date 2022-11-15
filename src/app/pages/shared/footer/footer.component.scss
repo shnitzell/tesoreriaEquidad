@@ -1,0 +1,45 @@
+@media (min-width: 1200px) {
+  .span3 {
+    width: 300px;
+  }
+  .span4 {
+    width: 350px;
+  }
+  .span5 {
+    width: 470px;
+  }
+  .span8 {
+    width: 710px;
+  }
+}
+@media (min-width: 1200px) {
+  [class*="span"] {
+    float: left;
+    min-height: 1px;
+    //margin-left: 30px;
+  }
+}
+
+#menuFooter li a {
+  color: #fff;
+  padding: 0 0.5em 0 0;
+}
+
+#menuFooter li a::after {
+  content: "/" !important;
+  margin-left: 0.3em;
+  font-size: 2em;
+  color: #fff;
+  top: 0.18em !important;
+  position: relative !important;
+  border: none !important;
+  display: inline !important;
+}
+
+.nav > li > a {
+  display: block;
+}
+
+.footerContent a {
+  color: #fff;
+}
