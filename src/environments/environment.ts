@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  host: "http://localhost:4200",
-  api: "http://yatchrend",
-  wompiKey: "pub_test_47EB3ZAyPoAzrNWWCUyQbeMjNZhC5nXs",
-  wompiServer: "https://sandbox.wompi.co/v1"
+  host: 'http://localhost:4200',
+  api: 'http://yatchrend',
+  wompiKey: 'pub_test_nhyj4PZUuBYW4a13cHRnHiJVOCh2bzQl',
+  wompiServer: 'https://sandbox.wompi.co/v1',
 };
 
 /*
