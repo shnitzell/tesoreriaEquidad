@@ -1,29 +1,2594 @@
 <!-- Toolbar -->
-<div class="accesibility-toolbar text-center container-fluid" style="background-color: #30a133;">
-    <nav class="nav justify-content-end col-12">            
-        <li class="nav-item">
-            <a class="nav-link" href="https://laequidadseguros.coop/contacto" target="_blank" rel="noopener noreferrer">Servicio al cliente</a>                
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/preguntas-frecuentes">Educación Financiera</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="https://equinet.laequidadseguros.coop/app.php/staff" target="_blank" rel="noopener noreferrer">Equinet</a>                
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="https://provalidarpoliza.azurewebsites.net/860028415/verify">Validación cumplimiento</a>            
-        </li>
-        <li>
-            <div class="input-group flex-nowrap" style="margin: 4px;margin-left: 16px;">
-                <input type="text" class="form-control" placeholder="Buscar..." style="height: 30px;">                             
-            </div>  
-        </li>
-    </nav>	
+<div
+  class="accesibility-toolbar text-center container-fluid"
+  style="background-color: #30a133"
+  id="headerTop"
+>
+  <nav class="nav justify-content-end col-12">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        href="https://laequidadseguros.coop/contacto"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Servicio al cliente</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/preguntas-frecuentes">Educación Financiera</a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        href="https://equinet.laequidadseguros.coop/app.php/staff"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Equinet</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        href="https://provalidarpoliza.azurewebsites.net/860028415/verify"
+        >Validación cumplimiento</a
+      >
+    </li>
+    <li>
+      <div class="span2">
+        <div class="search buscador mod_search93">
+          <form
+            action="/component/search/"
+            method="post"
+            class="form-inline"
+            role="search"
+          >
+            <input
+              (keydown.enter)="gotoSearch()"
+              [(ngModel)]="searchField"
+              name="searchword"
+              id="mod-search-searchword93"
+              maxlength="200"
+              class="inputbox search-query input-medium"
+              type="search"
+              size="20"
+              placeholder="Buscar..."
+            />
+            <input
+              type="image"
+              alt="Buscar"
+              class="button"
+              src="https://www.laequidadseguros.coop/templates/equidad/images/searchButton.gif"
+              onclick="this.form.searchword.focus();"
+            />
+          </form>
+        </div>
+      </div>
+    </li>
+  </nav>
 </div>
 
 <div class="toolbar" role="banner">
-    <a style="margin: 20px;" href="./">
-        <img width="180" alt="Logo Equidad Seguros" src="assets/images/logo_horizontal.png"/>
-    </a>
+  <a style="margin: 20px" href="./">
+    <img
+      width="180"
+      alt="Logo Equidad Seguros"
+      src="assets/images/logo_horizontal.png"
+    />
+  </a>
+
+  <div id="contMenuP">
+    <div class="maximenuckh ltr" id="menuPrincipal" style="z-index: 10">
+      <ul class="maximenuck">
+        <li
+          data-level="1"
+          class="maximenuck item101 current active first level1"
+          style="z-index: 12000"
+        >
+          <a data-hover="Inicio" class="maximenuck" href="/"
+            ><span class="titreck" data-hover="Inicio"
+              ><span class="titreck-text"
+                ><span class="titreck-title">Inicio</span></span
+              ></span
+            ></a
+          >
+        </li>
+        <li
+          data-level="1"
+          class="maximenuck item113 parent level1 maximenuckanimation"
+          style="z-index: 11999"
+        >
+          <a data-hover="Productos y Servicios" class="maximenuck" href="#"
+            ><span class="titreck" data-hover="Productos y Servicios"
+              ><span class="titreck-text"
+                ><span class="titreck-title">Productos y Servicios</span></span
+              ></span
+            ></a
+          >
+          <div class="floatck" style="position: absolute; display: none">
+            <div class="maxidrop-main" style="">
+              <div class="maximenuck2 first">
+                <ul class="maximenuck2">
+                  <li
+                    data-level="2"
+                    class="maximenuck item152 first parent level2 maximenuckanimation"
+                    style="z-index: 11998"
+                  >
+                    <a
+                      data-hover="Seguros Generales"
+                      class="maximenuck"
+                      href="https://www.laequidadseguros.coop/productos/seguros-generales"
+                      ><span class="titreck" data-hover="Seguros Generales"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Seguros Generales</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item238 first parent level3 maximenuckanimation"
+                              style="z-index: 11997"
+                            >
+                              <a
+                                data-hover="Seguros de Propiedad"
+                                class="maximenuck"
+                                href="https://www.laequidadseguros.coop/productos/seguros-generales/seguros-de-propiedad"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Seguros de Propiedad"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Seguros de Propiedad</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                              <div
+                                class="floatck"
+                                style="position: absolute; display: none"
+                              >
+                                <div class="maxidrop-main" style="">
+                                  <div class="maximenuck2 first">
+                                    <ul class="maximenuck2">
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item153 first level4"
+                                        style="z-index: 11996"
+                                      >
+                                        <a
+                                          data-hover="Incendio"
+                                          class="maximenuck"
+                                          href="https://www.laequidadseguros.coop/productos/seguros-generales/seguros-de-propiedad/incendio"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Incendio"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Incendio</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item156 level4"
+                                        style="z-index: 11995"
+                                      >
+                                        <a
+                                          data-hover="Sustracción"
+                                          class="maximenuck"
+                                          href="https://www.laequidadseguros.coop/productos/seguros-generales/seguros-de-propiedad/sustraccion"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Sustracción"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Sustracción</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item166 level4"
+                                        style="z-index: 11994"
+                                      >
+                                        <a
+                                          data-hover="Vivienda Segura"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/vivienda-segura"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Vivienda Segura"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Vivienda Segura</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item167 level4"
+                                        style="z-index: 11993"
+                                      >
+                                        <a
+                                          data-hover="Multi Riesgo Daño Material"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/multi-riesgo-dano-material"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Multi Riesgo Daño Material"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Multi Riesgo Daño
+                                                Material</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item209 level4"
+                                        style="z-index: 11992"
+                                      >
+                                        <a
+                                          data-hover="Copropiedades"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/copropiedades"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Copropiedades"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Copropiedades</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item241 level4"
+                                        style="z-index: 11991"
+                                      >
+                                        <a
+                                          data-hover="Hogar Integral Hombre"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/hogar-integral-hombre"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Hogar Integral Hombre"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Hogar Integral Hombre</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item279 level4"
+                                        style="z-index: 11990"
+                                      >
+                                        <a
+                                          data-hover="Hogar Integral Mujer"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/hogar-integral-mujer"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Hogar Integral Mujer"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Hogar Integral Mujer</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item432 level4"
+                                        style="z-index: 11989"
+                                      >
+                                        <a
+                                          data-hover=" Sustracción - TarjetaHabientes"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/sustraccion-tarjetahabientes"
+                                          ><span
+                                            class="titreck"
+                                            data-hover=" Sustracción - TarjetaHabientes"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title">
+                                                Sustracción -
+                                                TarjetaHabientes</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item467 level4"
+                                        style="z-index: 11988"
+                                      >
+                                        <a
+                                          data-hover="Cuida Emprendedor"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/cuida-emprendedor"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Cuida Emprendedor"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Cuida Emprendedor</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item474 last level4"
+                                        style="z-index: 11987"
+                                      >
+                                        <a
+                                          data-hover="Cuida tu bici-movilidad"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-propiedad/cuida-tu-bici-movilidad"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Cuida tu bici-movilidad"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Cuida tu bici-movilidad</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item239 parent level3 maximenuckanimation"
+                              style="z-index: 11986"
+                            >
+                              <a
+                                data-hover="Seguros Patrimoniales"
+                                class="maximenuck"
+                                href="/productos/seguros-generales/seguros-patrimoniales"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Seguros Patrimoniales"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Seguros Patrimoniales</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                              <div
+                                class="floatck"
+                                style="position: absolute; display: none"
+                              >
+                                <div class="maxidrop-main" style="">
+                                  <div class="maximenuck2 first">
+                                    <ul class="maximenuck2">
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item320 first level4"
+                                        style="z-index: 11985"
+                                      >
+                                        <a
+                                          data-hover="Seguro para Mascotas"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/seguro-para-mascotas"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Seguro para Mascotas"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Seguro para Mascotas</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item246 level4"
+                                        style="z-index: 11984"
+                                      >
+                                        <a
+                                          data-hover=" Infidelidad y riesgos financieros"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/manejo-de-entidades-financieras"
+                                          ><span
+                                            class="titreck"
+                                            data-hover=" Infidelidad y riesgos financieros"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title">
+                                                Infidelidad y riesgos
+                                                financieros</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item163 level4"
+                                        style="z-index: 11983"
+                                      >
+                                        <a
+                                          data-hover="Transporte de Valores"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/transporte-de-valores"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Transporte de Valores"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Transporte de Valores</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item164 level4"
+                                        style="z-index: 11982"
+                                      >
+                                        <a
+                                          data-hover="Transporte de Mercancías"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/transporte-especifico-de-mercancias"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Transporte de Mercancías"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Transporte de Mercancías</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item173 level4"
+                                        style="z-index: 11981"
+                                      >
+                                        <a
+                                          data-hover="Responsabilidad Civil Extracontractual"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/responsabilidad-civil-extracontractual"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Responsabilidad Civil Extracontractual"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Responsabilidad Civil
+                                                Extracontractual</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item211 level4"
+                                        style="z-index: 11980"
+                                      >
+                                        <a
+                                          data-hover="Trayecto Seguro"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/trayecto-seguro"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Trayecto Seguro"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Trayecto Seguro</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item229 level4"
+                                        style="z-index: 11979"
+                                      >
+                                        <a
+                                          data-hover="Manejo para Particulares"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/manejo-individual"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Manejo para Particulares"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Manejo para Particulares</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item249 level4"
+                                        style="z-index: 11978"
+                                      >
+                                        <a
+                                          data-hover="RCP Clínicas y Hospitales"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/responsabilidad-civil-profesional-clinicas-hospitales-e-instituciones-privadas-del-sector-sanidad"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="RCP Clínicas y Hospitales"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >RCP Clínicas y Hospitales</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item250 level4"
+                                        style="z-index: 11977"
+                                      >
+                                        <a
+                                          data-hover="Responsabilidad Civil Profesionales Sector Salud"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/responsabilidad-civil-profesionales-sector-salud"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Responsabilidad Civil Profesionales Sector Salud"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Responsabilidad Civil
+                                                Profesionales Sector Salud</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item251 level4"
+                                        style="z-index: 11976"
+                                      >
+                                        <a
+                                          data-hover="RCE por Transporte de Mercancías Peligrosas"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/responsabilidad-civil-extracontractual-por-transporte-de-mercancias-peligrosas"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="RCE por Transporte de Mercancías Peligrosas"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >RCE por Transporte de
+                                                Mercancías Peligrosas</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item252 level4"
+                                        style="z-index: 11975"
+                                      >
+                                        <a
+                                          data-hover="Responsabilidad Civil de Servidores Públicos"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/responsabilidad-civil-de-servidores-publicos"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Responsabilidad Civil de Servidores Públicos"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Responsabilidad Civil de
+                                                Servidores Públicos</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item380 level4"
+                                        style="z-index: 11974"
+                                      >
+                                        <a
+                                          data-hover="RC Profesionales Servicios Misceláneos"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/rc-para-servicios-miscelaneos"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="RC Profesionales Servicios Misceláneos"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >RC Profesionales Servicios
+                                                Misceláneos</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item381 level4"
+                                        style="z-index: 11973"
+                                      >
+                                        <a
+                                          data-hover="RC para Directores y Administradores"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/rc-para-directores-y-administradores"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="RC para Directores y Administradores"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >RC para Directores y
+                                                Administradores</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item383 level4"
+                                        style="z-index: 11972"
+                                      >
+                                        <a
+                                          data-hover="Póliza Global Comercial de Manejo"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/poliza-global-comercial-de-manejo"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Póliza Global Comercial de Manejo"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Póliza Global Comercial de
+                                                Manejo</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item385 level4"
+                                        style="z-index: 11971"
+                                      >
+                                        <a
+                                          data-hover="Póliza Individual de Manejo Sector Oficial"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/poliza-individual-de-manejo-sector-oficial"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Póliza Individual de Manejo Sector Oficial"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Póliza Individual de Manejo
+                                                Sector Oficial</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item391 level4"
+                                        style="z-index: 11970"
+                                      >
+                                        <a
+                                          data-hover="Manejo Global Sector Oficial"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/manejo-global-sector-oficial"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Manejo Global Sector Oficial"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Manejo Global Sector
+                                                Oficial</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item175 last level4"
+                                        style="z-index: 11969"
+                                      >
+                                        <a
+                                          data-hover="Seguro de Crédito Comercial "
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-patrimoniales/seguro-cooperativo-de-credito"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Seguro de Crédito Comercial "
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Seguro de Crédito Comercial
+                                              </span></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item240 parent level3 maximenuckanimation"
+                              style="z-index: 11968"
+                            >
+                              <a
+                                data-hover="Seguros de Ingeniería"
+                                class="maximenuck"
+                                href="/productos/seguros-generales/seguros-de-ingenieria"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Seguros de Ingeniería"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Seguros de Ingeniería</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                              <div
+                                class="floatck"
+                                style="position: absolute; display: none"
+                              >
+                                <div class="maxidrop-main" style="">
+                                  <div class="maximenuck2 first">
+                                    <ul class="maximenuck2">
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item157 first level4"
+                                        style="z-index: 11967"
+                                      >
+                                        <a
+                                          data-hover="Equipo Electrónico"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-ingenieria/equipo-electronico"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Equipo Electrónico"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Equipo Electrónico</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item159 level4"
+                                        style="z-index: 11966"
+                                      >
+                                        <a
+                                          data-hover="Rotura de Maquinaria"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-ingenieria/rotura-de-maquinaria"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Rotura de Maquinaria"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Rotura de Maquinaria</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item161 level4"
+                                        style="z-index: 11965"
+                                      >
+                                        <a
+                                          data-hover="Montaje Todo Riesgo"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-ingenieria/montaje-todo-riesgo"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Montaje Todo Riesgo"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Montaje Todo Riesgo</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item162 level4"
+                                        style="z-index: 11964"
+                                      >
+                                        <a
+                                          data-hover="Todo Riesgo Contratista"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-ingenieria/todo-riesgo-contratista"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Todo Riesgo Contratista"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Todo Riesgo Contratista</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item256 last level4"
+                                        style="z-index: 11963"
+                                      >
+                                        <a
+                                          data-hover="Equipo y Maquinaria Para Contratistas"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/seguros-de-ingenieria/equipo-y-maquinaria-para-contratistas"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Equipo y Maquinaria Para Contratistas"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Equipo y Maquinaria Para
+                                                Contratistas</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item155 parent level3 maximenuckanimation"
+                              style="z-index: 11962"
+                            >
+                              <a
+                                data-hover="Microseguros"
+                                class="maximenuck categoria_general"
+                                href="/productos/seguros-generales/microseguros"
+                                ><span class="titreck" data-hover="Microseguros"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Microseguros</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                              <div
+                                class="floatck"
+                                style="position: absolute; display: none"
+                              >
+                                <div class="maxidrop-main" style="">
+                                  <div class="maximenuck2 first">
+                                    <ul class="maximenuck2">
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item323 first level4"
+                                        style="z-index: 11961"
+                                      >
+                                        <a
+                                          data-hover="Básico Empresa"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/microseguros/basico-empresa"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Básico Empresa"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Básico Empresa</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item326 last level4"
+                                        style="z-index: 11960"
+                                      >
+                                        <a
+                                          data-hover="Básico Hogar"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/microseguros/basico-hogar"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Básico Hogar"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Básico Hogar</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item262 parent level3 maximenuckanimation"
+                              style="z-index: 11959"
+                            >
+                              <a
+                                data-hover="Cumplimiento"
+                                class="maximenuck"
+                                href="/productos/seguros-generales/cumplimiento"
+                                ><span class="titreck" data-hover="Cumplimiento"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Cumplimiento</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                              <div
+                                class="floatck"
+                                style="position: absolute; display: none"
+                              >
+                                <div class="maxidrop-main" style="">
+                                  <div class="maximenuck2 first">
+                                    <ul class="maximenuck2">
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item263 first level4"
+                                        style="z-index: 11958"
+                                      >
+                                        <a
+                                          data-hover="A favor de Entidades Estatales"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/a-favor-de-entidades-estatales"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="A favor de Entidades Estatales"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >A favor de Entidades
+                                                Estatales</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item264 level4"
+                                        style="z-index: 11957"
+                                      >
+                                        <a
+                                          data-hover="A favor de Empresas de Servicios Públicos"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/a-favor-de-empresas-de-servicios-pubicos"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="A favor de Empresas de Servicios Públicos"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >A favor de Empresas de
+                                                Servicios Públicos</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item265 level4"
+                                        style="z-index: 11956"
+                                      >
+                                        <a
+                                          data-hover="A favor de Entidades Públicas de Régimen Privado"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/a-favor-de-entidades-publicas-de-regimen-privado"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="A favor de Entidades Públicas de Régimen Privado"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >A favor de Entidades Públicas
+                                                de Régimen Privado</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item266 level4"
+                                        style="z-index: 11955"
+                                      >
+                                        <a
+                                          data-hover="A Favor de Particulares"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/a-favor-de-particulares"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="A Favor de Particulares"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >A Favor de Particulares</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item267 level4"
+                                        style="z-index: 11954"
+                                      >
+                                        <a
+                                          data-hover="A favor de Ecopetrol"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/a-favor-de-ecopetrol"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="A favor de Ecopetrol"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >A favor de Ecopetrol</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item268 level4"
+                                        style="z-index: 11953"
+                                      >
+                                        <a
+                                          data-hover="Disposiciones Legales"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/dispocisiones-legales"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Disposiciones Legales"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Disposiciones Legales</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item269 level4"
+                                        style="z-index: 11952"
+                                      >
+                                        <a
+                                          data-hover="Arrendamiento Individual y Colectivo"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/arrendamiento-individual-y-colectivo"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Arrendamiento Individual y Colectivo"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Arrendamiento Individual y
+                                                Colectivo</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item253 level4"
+                                        style="z-index: 11951"
+                                      >
+                                        <a
+                                          data-hover="Póliza Judicial"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/poliza-judicial"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Póliza Judicial"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Póliza Judicial</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item174 last level4"
+                                        style="z-index: 11950"
+                                      >
+                                        <a
+                                          data-hover="RCE Entidades Estatales"
+                                          class="maximenuck"
+                                          href="/productos/seguros-generales/cumplimiento/rce-entidades-estatales"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="RCE Entidades Estatales"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >RCE Entidades Estatales</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item460 level3"
+                              style="z-index: 11949"
+                            >
+                              <a
+                                data-hover="Portal de Cumplimiento"
+                                class="maximenuck"
+                                href="https://www.isoatequidad.transfiriendo.com/PortaliSoatEQ/Webforms/Account/Views/Index.aspx"
+                                target="_blank"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Portal de Cumplimiento"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Portal de Cumplimiento</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item470 last level3"
+                              style="z-index: 11948"
+                            >
+                              <a
+                                data-hover="Crédito Comercial - Movilidad"
+                                class="maximenuck"
+                                href="/productos/seguros-generales/credito-comercial-movilidad"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Crédito Comercial - Movilidad"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Crédito Comercial - Movilidad</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item154 parent level2 maximenuckanimation"
+                    style="z-index: 11947"
+                  >
+                    <a
+                      data-hover="Seguros de Vida"
+                      class="maximenuck"
+                      href="/productos/seguros-de-vida"
+                      ><span class="titreck" data-hover="Seguros de Vida"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Seguros de Vida</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item227 first level3"
+                              style="z-index: 11946"
+                            >
+                              <a
+                                data-hover="Vida Individual"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/vida-individual"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vida Individual"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vida Individual</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item290 level3"
+                              style="z-index: 11945"
+                            >
+                              <a
+                                data-hover="Vida Individual Deudores"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/deuda-protegida"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vida Individual Deudores"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vida Individual Deudores</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item221 level3"
+                              style="z-index: 11944"
+                            >
+                              <a
+                                data-hover="Vida grupo ahorros y depósitos"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/vida-aportes-y-ahorros"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vida grupo ahorros y depósitos"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vida grupo ahorros y depósitos</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item220 level3"
+                              style="z-index: 11943"
+                            >
+                              <a
+                                data-hover="Vida Grupo Deudores"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/vida-grupo-deudores"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vida Grupo Deudores"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vida Grupo Deudores</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item222 level3"
+                              style="z-index: 11942"
+                            >
+                              <a
+                                data-hover="Vida Grupo Directivos"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/vida-grupo-directivos"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vida Grupo Directivos"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vida Grupo Directivos</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item219 level3"
+                              style="z-index: 11941"
+                            >
+                              <a
+                                data-hover="Vida Grupo "
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/vida-grupo"
+                                ><span class="titreck" data-hover="Vida Grupo "
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vida Grupo
+                                    </span></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item216 level3"
+                              style="z-index: 11940"
+                            >
+                              <a
+                                data-hover="Accidentes Personales"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/accidentes-personales"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Accidentes Personales"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Accidentes Personales</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item218 level3"
+                              style="z-index: 11939"
+                            >
+                              <a
+                                data-hover="Accidentes en Viaje"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/accidente-en-viaje"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Accidentes en Viaje"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Accidentes en Viaje</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item217 level3"
+                              style="z-index: 11938"
+                            >
+                              <a
+                                data-hover="Accidentes Estudiantiles"
+                                class="maximenuck"
+                                href="/productos/seguros-de-vida/accidentes-estudiantiles"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Accidentes Estudiantiles"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Accidentes Estudiantiles</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item288 parent last level3 maximenuckanimation"
+                              style="z-index: 11937"
+                            >
+                              <a
+                                data-hover="Microseguros"
+                                class="maximenuck categoria_general"
+                                href="/productos/seguros-de-vida/microseguros"
+                                ><span class="titreck" data-hover="Microseguros"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Microseguros</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                              <div
+                                class="floatck"
+                                style="position: absolute; display: none"
+                              >
+                                <div class="maxidrop-main" style="">
+                                  <div class="maximenuck2 first">
+                                    <ul class="maximenuck2">
+                                      <li
+                                        data-level="4"
+                                        class="maximenuck item293 first last level4"
+                                        style="z-index: 11936"
+                                      >
+                                        <a
+                                          data-hover="Vida Grupo Masivo"
+                                          class="maximenuck"
+                                          href="/productos/seguros-de-vida/microseguros/basico-accidentes-estudiantiles"
+                                          ><span
+                                            class="titreck"
+                                            data-hover="Vida Grupo Masivo"
+                                            ><span class="titreck-text"
+                                              ><span class="titreck-title"
+                                                >Vida Grupo Masivo</span
+                                              ></span
+                                            ></span
+                                          ></a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item210 parent level2 maximenuckanimation"
+                    style="z-index: 11935"
+                  >
+                    <a
+                      data-hover="Seguros de Autos y RC"
+                      class="maximenuck"
+                      href="/productos/seguros-de-autos-y-rc"
+                      ><span class="titreck" data-hover="Seguros de Autos y RC"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Seguros de Autos y RC</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item213 first level3"
+                              style="z-index: 11934"
+                            >
+                              <a
+                                data-hover="Vehículos Servicio Público"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/vehiculos-servicio-publico"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vehículos Servicio Público"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vehículos Servicio Público</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item180 level3"
+                              style="z-index: 11933"
+                            >
+                              <a
+                                data-hover="RCC Transporte Público"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/rcc-transporte-publico"
+                                ><span
+                                  class="titreck"
+                                  data-hover="RCC Transporte Público"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >RCC Transporte Público</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item233 level3"
+                              style="z-index: 11932"
+                            >
+                              <a
+                                data-hover="RCE Transporte Público"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/rce-transporte-publico"
+                                ><span
+                                  class="titreck"
+                                  data-hover="RCE Transporte Público"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >RCE Transporte Público</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item257 level3"
+                              style="z-index: 11931"
+                            >
+                              <a
+                                data-hover="Auto Protegido / Autoplus"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/autoplus"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Auto Protegido / Autoplus"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Auto Protegido / Autoplus</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item244 level3"
+                              style="z-index: 11930"
+                            >
+                              <a
+                                data-hover="Vehículos Utilitarios"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/vehiculos-utilitarios2"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vehículos Utilitarios"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vehículos Utilitarios</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item178 level3"
+                              style="z-index: 11929"
+                            >
+                              <a
+                                data-hover="Vehículos Pesados"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/vehiculos-pesados"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Vehículos Pesados"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Vehículos Pesados</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item394 level3"
+                              style="z-index: 11928"
+                            >
+                              <a
+                                data-hover="SOAT"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/soat"
+                                ><span class="titreck" data-hover="SOAT"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >SOAT</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item472 last level3"
+                              style="z-index: 11927"
+                            >
+                              <a
+                                data-hover="Motos"
+                                class="maximenuck"
+                                href="/productos/seguros-de-autos-y-rc/motos"
+                                ><span class="titreck" data-hover="Motos"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Motos</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item291 last level2"
+                    style="z-index: 11926"
+                  >
+                    <a
+                      data-hover="Cotizadores"
+                      class="maximenuck"
+                      href="https://servicios.laequidadseguros.coop/Cotizadores/ "
+                      target="_blank"
+                      ><span class="titreck" data-hover="Cotizadores"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title">Cotizadores</span></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          data-level="1"
+          class="maximenuck item429 level1"
+          style="z-index: 11925"
+        >
+          <a
+            data-hover="Club de Beneficios"
+            class="maximenuck"
+            href="/club-gente-extraordinaria"
+            ><span class="titreck" data-hover="Club de Beneficios"
+              ><span class="titreck-text"
+                ><span class="titreck-title">Club de Beneficios</span></span
+              ></span
+            ></a
+          >
+        </li>
+        <li
+          data-level="1"
+          class="maximenuck item112 parent level1 maximenuckanimation"
+          style="z-index: 12001"
+        >
+          <a data-hover="La Equidad Seguros" class="maximenuck" href="#"
+            ><span class="titreck" data-hover="La Equidad Seguros"
+              ><span class="titreck-text"
+                ><span class="titreck-title">La Equidad Seguros</span></span
+              ></span
+            ></a
+          >
+          <div
+            class="floatck"
+            style="position: absolute; display: none; z-index: 12001"
+          >
+            <div class="maxidrop-main" style="">
+              <div class="maximenuck2 first">
+                <ul class="maximenuck2">
+                  <li
+                    data-level="2"
+                    class="maximenuck item121 first level2"
+                    style="z-index: 11923"
+                  >
+                    <a
+                      data-hover="Nuestra Historia"
+                      class="maximenuck"
+                      href="/la-equidad/nuestra-historia"
+                      ><span class="titreck" data-hover="Nuestra Historia"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Nuestra Historia</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item287 level2"
+                    style="z-index: 11922"
+                  >
+                    <a
+                      data-hover=" Presidencia Ejecutiva"
+                      class="maximenuck"
+                      href="/la-equidad/saludo-de-presidencia-ejecutiva"
+                      ><span class="titreck" data-hover=" Presidencia Ejecutiva"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title">
+                            Presidencia Ejecutiva</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item145 parent level2 maximenuckanimation"
+                    style="z-index: 11921"
+                  >
+                    <a
+                      data-hover="Nuestra Entidad"
+                      class="maximenuck"
+                      href="/la-equidad/nuestra-entidad"
+                      ><span class="titreck" data-hover="Nuestra Entidad"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Nuestra Entidad</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item294 first level3"
+                              style="z-index: 11920"
+                            >
+                              <a
+                                data-hover="Principios y Valores Cooperativos"
+                                class="maximenuck"
+                                href="/la-equidad/nuestra-entidad/principios-y-valores"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Principios y Valores Cooperativos"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Principios y Valores Cooperativos</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item295 level3"
+                              style="z-index: 11919"
+                            >
+                              <a
+                                data-hover="Nuestras Certificaciones"
+                                class="maximenuck"
+                                href="/la-equidad/nuestra-entidad/nuestras-certificaciones"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Nuestras Certificaciones"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Nuestras Certificaciones</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item208 last level3"
+                              style="z-index: 11918"
+                            >
+                              <a
+                                data-hover="¿Cómo hacerse asociado?"
+                                class="maximenuck"
+                                href="/la-equidad/nuestra-entidad/como-hacerse-asociado"
+                                ><span
+                                  class="titreck"
+                                  data-hover="¿Cómo hacerse asociado?"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >¿Cómo hacerse asociado?</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item296 parent level2 maximenuckanimation"
+                    style="z-index: 11917"
+                  >
+                    <a
+                      data-hover="Gobierno Corporativo "
+                      class="maximenuck"
+                      href="#"
+                      ><span class="titreck" data-hover="Gobierno Corporativo "
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Gobierno Corporativo
+                          </span></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item146 first level3"
+                              style="z-index: 11916"
+                            >
+                              <a
+                                data-hover="Estatutos La Equidad Seguros"
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/estatutos-la-equidad-seguros"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Estatutos La Equidad Seguros"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Estatutos La Equidad Seguros</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item392 level3"
+                              style="z-index: 11915"
+                            >
+                              <a
+                                data-hover="Entidades Asociadas"
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/entidades-asociadas"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Entidades Asociadas"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Entidades Asociadas</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item149 level3"
+                              style="z-index: 11914"
+                            >
+                              <a
+                                data-hover="Información Financiera"
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/informacion-financiera"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Información Financiera"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Información Financiera</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item148 level3"
+                              style="z-index: 11913"
+                            >
+                              <a
+                                data-hover="Código de Conducta"
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/codigo-de-conducta"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Código de Conducta"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Código de Conducta</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item147 level3"
+                              style="z-index: 11912"
+                            >
+                              <a
+                                data-hover="Código de Buen Gobierno"
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/codigo-del-buen-gobierno"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Código de Buen Gobierno"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Código de Buen Gobierno</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item297 level3"
+                              style="z-index: 11911"
+                            >
+                              <a
+                                data-hover="Manual de conflictos de interés "
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/manual-de-conflictos-de-interes"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Manual de conflictos de interés "
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Manual de conflictos de interés
+                                    </span></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item298 level3"
+                              style="z-index: 11910"
+                            >
+                              <a
+                                data-hover="Lineamientos de Control Interno "
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/lineamientos-de-control-interno"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Lineamientos de Control Interno "
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Lineamientos de Control Interno
+                                    </span></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item321 last level3"
+                              style="z-index: 11909"
+                            >
+                              <a
+                                data-hover="Sistema de Administración de Riesgos "
+                                class="maximenuck"
+                                href="/la-equidad/gobierno-corporativo/sistema-de-administracion-de-riesgos"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Sistema de Administración de Riesgos "
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Sistema de Administración de Riesgos
+                                    </span></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item390 level2"
+                    style="z-index: 11908"
+                  >
+                    <a
+                      data-hover="Línea Ética "
+                      class="maximenuck"
+                      href="/la-equidad/linea-etica"
+                      ><span class="titreck" data-hover="Línea Ética "
+                        ><span class="titreck-text"
+                          ><span class="titreck-title">Línea Ética </span></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item421 parent level2 maximenuckanimation"
+                    style="z-index: 11907"
+                  >
+                    <a
+                      data-hover="Régimen Tributario Especial-RTE"
+                      class="maximenuck"
+                      href="#"
+                      ><span
+                        class="titreck"
+                        data-hover="Régimen Tributario Especial-RTE"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Régimen Tributario Especial-RTE</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item422 first level3"
+                              style="z-index: 11906"
+                            >
+                              <a
+                                data-hover="Equidad Seguros Generales OC (RTE)"
+                                class="maximenuck"
+                                href="/la-equidad/regimen-tributarioespecial-rte/equidad-seguros-generales-oc-rte"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Equidad Seguros Generales OC (RTE)"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Equidad Seguros Generales OC (RTE)</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item423 last level3"
+                              style="z-index: 11905"
+                            >
+                              <a
+                                data-hover="Equidad Seguros Vida OC (RTE)"
+                                class="maximenuck"
+                                href="/la-equidad/regimen-tributarioespecial-rte/equidad-seguros-vidaoc-rte"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Equidad Seguros Vida OC (RTE)"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Equidad Seguros Vida OC (RTE)</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item277 last level2"
+                    style="z-index: 11904"
+                  >
+                    <a
+                      data-hover="Novedades"
+                      class="maximenuck"
+                      href="/la-equidad/eventos"
+                      ><span class="titreck" data-hover="Novedades"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title">Novedades</span></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          data-level="1"
+          class="maximenuck item114 parent level1 maximenuckanimation"
+          style="z-index: 12001"
+        >
+          <a
+            data-hover="Canales de Atención"
+            class="maximenuck"
+            href="/contacto"
+            ><span class="titreck" data-hover="Canales de Atención"
+              ><span class="titreck-text"
+                ><span class="titreck-title">Canales de Atención</span></span
+              ></span
+            ></a
+          >
+          <div
+            class="floatck"
+            style="position: absolute; display: none; z-index: 12001"
+          >
+            <div class="maxidrop-main" style="">
+              <div class="maximenuck2 first">
+                <ul class="maximenuck2">
+                  <li
+                    data-level="2"
+                    class="maximenuck item236 first parent level2 maximenuckanimation"
+                    style="z-index: 12001"
+                  >
+                    <a data-hover="Dónde estamos" class="maximenuck" href="#"
+                      ><span class="titreck" data-hover="Dónde estamos"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Dónde estamos</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none; z-index: 12001"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item192 first level3"
+                              style="z-index: 11901"
+                            >
+                              <a
+                                data-hover="Directorio de Agencias"
+                                class="maximenuck"
+                                href="/contacto/desplegable/directorio-de-agencias"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Directorio de Agencias"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Directorio de Agencias</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item193 level3"
+                              style="z-index: 11900"
+                            >
+                              <a
+                                data-hover="Directorio de Franquicias"
+                                class="maximenuck"
+                                href="/contacto/desplegable/directorio-de-franquicias"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Directorio de Franquicias"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Directorio de Franquicias</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item194 last level3"
+                              style="z-index: 11899"
+                            >
+                              <a
+                                data-hover="Directorio de Delegaciones"
+                                class="maximenuck"
+                                href="/contacto/desplegable/directorio-de-delegaciones"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Directorio de Delegaciones"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Directorio de Delegaciones</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item414 parent level2 maximenuckanimation"
+                    style="z-index: 12001"
+                  >
+                    <a
+                      data-hover="Servicios en línea"
+                      class="maximenuck"
+                      href="#"
+                      ><span class="titreck" data-hover="Servicios en línea"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Servicios en línea</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none; z-index: 12001"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item415 first level3"
+                              style="z-index: 11897"
+                            >
+                              <a
+                                data-hover="Portal Clientes"
+                                class="maximenuck"
+                                href="/contacto/servicios-en-linea/portal-clientes"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Portal Clientes"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Portal Clientes</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item416 level3"
+                              style="z-index: 11896"
+                            >
+                              <a
+                                data-hover="Portal Clientes ARL"
+                                class="maximenuck"
+                                href="/contacto/servicios-en-linea/portal-clientes-arl"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Portal Clientes ARL"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Portal Clientes ARL</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item417 level3"
+                              style="z-index: 11895"
+                            >
+                              <a
+                                data-hover="Portal Intermediarios"
+                                class="maximenuck"
+                                href="/contacto/servicios-en-linea/portal-intermediarios"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Portal Intermediarios"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Portal Intermediarios</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                            <li
+                              data-level="3"
+                              class="maximenuck item418 last level3"
+                              style="z-index: 11894"
+                            >
+                              <a
+                                data-hover="Pagos Online/ Tesorería Virtual "
+                                class="maximenuck"
+                                href="/contacto/servicios-en-linea/pagos-online-tesoreria-virtual"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Pagos Online/ Tesorería Virtual "
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Pagos Online/ Tesorería Virtual
+                                    </span></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item196 level2"
+                    style="z-index: 11893"
+                  >
+                    <a
+                      data-hover="¿Qué hacer en caso de siniestro?"
+                      class="maximenuck"
+                      href="/contacto/que-hacer-en-caso-de-siniestro"
+                      ><span
+                        class="titreck"
+                        data-hover="¿Qué hacer en caso de siniestro?"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >¿Qué hacer en caso de siniestro?</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item465 level2"
+                    style="z-index: 11892"
+                  >
+                    <a
+                      data-hover="Atención Seguros de arrendamiento"
+                      class="maximenuck"
+                      href="https://www.laequidadseguros.coop/productos/seguros-generales/cumplimiento/arrendamiento-individual-y-colectivo"
+                      ><span
+                        class="titreck"
+                        data-hover="Atención Seguros de arrendamiento"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Atención Seguros de arrendamiento</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item466 parent level2 maximenuckanimation"
+                    style="z-index: 11891"
+                  >
+                    <a
+                      data-hover="Canales de atención ARL "
+                      class="maximenuck"
+                      href="https://sftp.laequidadseguros.coop/2020/ARTE%20INFOGRAFIA%20CANALES%20ARL.pdf"
+                      ><span
+                        class="titreck"
+                        data-hover="Canales de atención ARL "
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Canales de atención ARL
+                          </span></span
+                        ></span
+                      ></a
+                    >
+                    <div
+                      class="floatck"
+                      style="position: absolute; display: none"
+                    >
+                      <div class="maxidrop-main" style="">
+                        <div class="maximenuck2 first">
+                          <ul class="maximenuck2">
+                            <li
+                              data-level="3"
+                              class="maximenuck item469 first last level3"
+                              style="z-index: 11890"
+                            >
+                              <a
+                                data-hover="Radicación cuentas de cobro ARL"
+                                class="maximenuck"
+                                href="https://reclamacion.laequidadseguros.coop/appnetunity/UnityForm.aspx?d1=ARsmL5uXAiT6LZ5htFO7btAhlNpChdIhkC11TZet7txnsH8AtD3DvZSdtUp8bhYagGq6DoKw2%2fssNJk%2btPtmKZOxaWb9t5OY0SUvQpo27BSNPFi%2bTE7ld%2f%2bzrxPRwd8%2bPv2qmbMJcwmmoUSgg7cJ78I3OE%2b3bezPXasQmQXfYl4vJUxyh4LqbnymXqldnqu0w%2ba9VJhEmwpVD2qm53sPaXU%3d"
+                                ><span
+                                  class="titreck"
+                                  data-hover="Radicación cuentas de cobro ARL"
+                                  ><span class="titreck-text"
+                                    ><span class="titreck-title"
+                                      >Radicación cuentas de cobro ARL</span
+                                    ></span
+                                  ></span
+                                ></a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item427 level2"
+                    style="z-index: 11889"
+                  >
+                    <a
+                      data-hover="Centros de inspección Automás"
+                      class="maximenuck"
+                      href="/contacto/centros-de-inspeccion-automas"
+                      ><span
+                        class="titreck"
+                        data-hover="Centros de inspección Automás"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Centros de inspección Automás</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item198 level2"
+                    style="z-index: 11888"
+                  >
+                    <a
+                      data-hover="Atención al consumidor financiero"
+                      class="maximenuck"
+                      href="/contacto/s-a-c"
+                      ><span
+                        class="titreck"
+                        data-hover="Atención al consumidor financiero"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Atención al consumidor financiero</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item396 level2"
+                    style="z-index: 11887"
+                  >
+                    <a
+                      data-hover="Buzón de notificaciones judiciales"
+                      class="maximenuck"
+                      href="/contacto/buzon-de-notificaciones-judiciales"
+                      ><span
+                        class="titreck"
+                        data-hover="Buzón de notificaciones judiciales"
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Buzón de notificaciones judiciales</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                  <li
+                    data-level="2"
+                    class="maximenuck item477 last level2"
+                    style="z-index: 11886"
+                  >
+                    <a
+                      data-hover="Defensoría del consumidor financiero."
+                      class="maximenuck"
+                      href="/contacto/defensoria"
+                      ><span
+                        class="titreck"
+                        data-hover="Defensoría del consumidor financiero."
+                        ><span class="titreck-text"
+                          ><span class="titreck-title"
+                            >Defensoría del consumidor financiero.</span
+                          ></span
+                        ></span
+                      ></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          data-level="1"
+          class="maximenuck item446 level1"
+          style="z-index: 11885"
+        >
+          <a
+            data-hover="Radicación cuentas de cobro ARL"
+            class="maximenuck"
+            href="https://reclamacion.laequidadseguros.coop/appnetunity/UnityForm.aspx?d1=ARsmL5uXAiT6LZ5htFO7btAhlNpChdIhkC11TZet7txnsH8AtD3DvZSdtUp8bhYagGq6DoKw2%2fssNJk%2btPtmKZOxaWb9t5OY0SUvQpo27BSNPFi%2bTE7ld%2f%2bzrxPRwd8%2bPv2qmbMJcwmmoUSgg7cJ78I3OE%2b3bezPXasQmQXfYl4vJUxyh4LqbnymXqldnqu0w%2ba9VJhEmwpVD2qm53sPaXU%3d"
+            target="_blank"
+            ><span class="titreck" data-hover="Radicación cuentas de cobro ARL"
+              ><span class="titreck-text"
+                ><span class="titreck-title"
+                  >Radicación cuentas de cobro ARL</span
+                ></span
+              ></span
+            ></a
+          >
+        </li>
+        <li
+          data-level="1"
+          class="maximenuck item471 last level1"
+          style="z-index: 11884"
+        >
+          <a
+            data-hover="Portal Clientes"
+            class="maximenuck"
+            href="https://servicios.laequidadseguros.coop/clientes"
+            ><span class="titreck" data-hover="Portal Clientes"
+              ><span class="titreck-text"
+                ><span class="titreck-title">Portal Clientes</span></span
+              ></span
+            ></a
+          >
+        </li>
+        <li class="maxiFancybackground" style="left: 0px; width: 56.7031px">
+          <div class="maxiFancycenter">
+            <div class="maxiFancyleft"><div class="maxiFancyright"></div></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="span2 visible-desktop">
+    <div class="custom contServLinea">
+      <p>
+        <a
+          href="https://servicios.laequidadseguros.coop/"
+          rel="alternate noopener noreferrer"
+          target="_blank"
+          title="Servicios En Línea"
+          ><img
+            src="https://www.laequidadseguros.coop/images/iconoServiciosEnLinea.png"
+            title="iconoServiciosEnLinea image"
+            alt="iconoServiciosEnLinea La Equidad Seguros - Una aseguradora cooperativa con sentido social"
+            width="135"
+            height="59" /></a
+        ><a
+          href="https://www.laequidadseguros.coop/la-equidad/linea-etica"
+          rel="alternate"
+          ><img
+            src="https://www.laequidadseguros.coop/images/logo_linea_etica-02.jpg"
+            title="logo_linea_etica-02 image"
+            style="margin-top: 2em"
+            alt="logo_linea_etica-02 La Equidad Seguros - Una aseguradora cooperativa con sentido social"
+            width="139"
+            height="32"
+        /></a>
+      </p>
+    </div>
+  </div>
 </div>
-  
