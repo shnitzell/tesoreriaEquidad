@@ -1,41 +1,72 @@
-<div class="container d-flex justify-content-center text-center h-100 my-5" style="max-height: 63vh;">
-    <div class="card">
-        <div class="card-body">
-            <h4>Resultado de la transacción</h4>
-            <div class="row ticket" id="ticketTransaction">
-                <div class="col-md-6 d-sm-none d-md-block text-center desprendible ">
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-center">
-                            <div class="pago-hecho"
-                                [ngClass]="{'exitoso': state == 'e', 'pendiente': state == 'p', 'fallo': state == 'f' || state == 'd' || state == 'v'  }"
-                                [ngSwitch]="state">
-                                <i *ngSwitchCase="'e'" class="fa fa-thumbs-up" aria-hidden="true"></i>
-                                <i *ngSwitchCase="'p'" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                <i *ngSwitchDefault class="fa fa-exclamation" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <h4 class="col-12">Tu pago {{ getEstatus() }}</h4>
-                        <p class="col-12">Resumen de tu transacción</p>
-                    </div>
-                </div>
-                <div class="col-6 desprendible">
-                    <div class="row">
-                        <p class="col-12">Valor del pago</p>
-                        <h4 class="col-12">{{valorPago | currency}}</h4>
-                        <div class="col-12 dateData">
-                            {{fechaPago | date:'medium' }}
-                        </div>
-                    </div>
-                    <div class="row desprendible" style="text-align: left;">
-                        <p class="col-12">Desde <br><b style="color: black;">{{ desdePago }}</b></p>
-                        <p class="col-12">Producto que se pagó <br><b style="color: black;">{{ productoPago }}</b></p>
-                        <p class="col-12">ID de transacción <br><b style="color: black;">{{ resultID }}</b></p>
-                    </div>
-                </div>
+<div
+  class="container d-flex justify-content-center text-center h-100 my-5"
+  style="max-height: 70vh"
+>
+  <div class="card">
+    <div class="card-body">
+      <h4>Resultado de la transacción</h4>
+      <div class="row ticket" id="ticketTransaction">
+        <div class="col-md-6 d-sm-none d-md-block text-center desprendible">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <div
+                class="pago-hecho"
+                [ngClass]="{
+                  exitoso: state == 'e',
+                  pendiente: state == 'p',
+                  fallo: state == 'f' || state == 'd' || state == 'v'
+                }"
+                [ngSwitch]="state"
+              >
+                <i
+                  *ngSwitchCase="'e'"
+                  class="fa fa-thumbs-up"
+                  aria-hidden="true"
+                ></i>
+                <i
+                  *ngSwitchCase="'p'"
+                  class="fa fa-exclamation-triangle"
+                  aria-hidden="true"
+                ></i>
+                <i
+                  *ngSwitchDefault
+                  class="fa fa-exclamation"
+                  aria-hidden="true"
+                ></i>
+              </div>
             </div>
-            <div class="row" *ngIf="!genPDF">
-                <button class="col-11  mx-auto btn btn-success" (click)="downloadPDF()">Imprimir transacción</button>
-            </div>
+            <h4 class="col-12">Tu pago {{ getEstatus() }}</h4>
+            <p class="col-12">Resumen de tu transacción</p>
+          </div>
         </div>
+        <div class="col-6 desprendible">
+          <div class="row">
+            <p class="col-12">Valor del pago</p>
+            <h4 class="col-12">{{ valorPago | currency }}</h4>
+            <div class="col-12 dateData">
+              {{ fechaPago | date : "medium" }}
+            </div>
+          </div>
+          <div class="row desprendible" style="text-align: left">
+            <p class="col-12">
+              Desde <br /><b style="color: black">{{ desdePago }}</b>
+            </p>
+            <p class="col-12">
+              Producto que se pagó <br /><b style="color: black">{{
+                productoPago
+              }}</b>
+            </p>
+            <p class="col-12">
+              ID de transacción <br /><b style="color: black">{{ resultID }}</b>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!genPDF">
+        <button class="col-11 mx-auto btn btn-success" (click)="downloadPDF()">
+          Imprimir transacción
+        </button>
+      </div>
     </div>
+  </div>
 </div>
