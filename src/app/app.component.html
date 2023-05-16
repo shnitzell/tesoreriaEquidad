@@ -1,18 +1,11 @@
 <div class="main-content d-flex flex-column min-vh-100">
-  <div style="height: 120px">
+  <header>
     <app-header></app-header>
-  </div>
-  <div
-    style="
-      height: 84vh;
-      margin-top: auto;
-      margin-bottom: auto;
-      padding-top: 50px;
-    "
-  >
+  </header>
+  <section>
     <router-outlet></router-outlet>
-  </div>
-  <div class="container-fluid mt-auto px-0">
+  </section>
+  <footer class="container-fluid mt-auto px-0">
     <app-footer></app-footer>
-  </div>
+  </footer>
 </div>

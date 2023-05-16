@@ -27,9 +27,9 @@
 
 <div
   class="container d-flex justify-content-center text-center h-100 my-5"
-  style="max-height: 60vh"
+  style="max-height: 90vh"
 >
-  <div class="card" style="height: 600px">
+  <div class="card" style="height: 680px">
     <div class="card-header">
       <h4 class="card-title">
         Reporte detallado de pólizas del cliente {{ clienteName }}
@@ -118,16 +118,19 @@
             <tr class="noBordertd">
               <td colspan="5">Total cartera</td>
               <td>{{ sumarDeuda() | currency }}</td>
+              <td colspan="1">Paga con:</td>
               <!-- Total -->
             </tr>
             <tr class="noBordertd">
-              <td colspan="5">Cartera seleccionada</td>
-              <td>{{ sumarDeudaSeleccionada() | currency }}</td>
-              <td colspan="1">Paga con:</td>
-            </tr>
-            <tr class="noBordertd">
-              <td colspan="5">Total a pagar</td>
-              <td>{{ sumarDeudaSeleccionada() | currency }}</td>
+              <td colspan="5">
+                Cartera seleccionada<br />
+                Total a pagar
+              </td>
+              <td>
+                {{ sumarDeudaSeleccionada() | currency }}<br />
+                {{ sumarDeudaSeleccionada() | currency }}
+              </td>
+
               <td colspan="2">
                 <button
                   style="border-color: transparent"
@@ -144,6 +147,23 @@
                   [disabled]="sumarDeudaSeleccionada() == 0"
                 >
                   <img src="assets/images/banco-logo.png" width="100" />
+                </button>
+              </td>
+            </tr>
+            <tr class="noBordertd">
+              <td colspan="6">&nbsp;</td>
+              <td colspan="1">Financia con:</td>
+            </tr>
+            <tr class="noBordertd">
+              <td colspan="6">&nbsp;</td>
+              <td colspan="2">
+                <button
+                  style="border-color: transparent"
+                  class="btn btn-outline-success col-4"
+                  (click)="pagarCon('coomeva', asignarVend)"
+                  [disabled]="sumarDeudaSeleccionada() == 0"
+                >
+                  <img src="assets/images/bancoomeva-logo.png" width="60" />
                 </button>
               </td>
             </tr>

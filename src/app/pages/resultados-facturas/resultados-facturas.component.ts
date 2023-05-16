@@ -171,6 +171,19 @@ export class ResultadosFacturasComponent implements OnInit {
           );
 
         break;
+
+      case 'coomeva':
+        this.service.presentAlertConfirm(
+          '¿Está seguro?',
+          'Esto abrirá una ventana externa con Bancoomeva donde deberá seguir el proceso',
+          {
+            confirmButtonText: 'Confirmar',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            icon: 'warning',
+          }
+        );
+        break;
     }
   }
 }

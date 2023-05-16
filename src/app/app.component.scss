@@ -1,0 +1,11 @@
+.main-content {
+  & > header,
+  section,
+  footer {
+    flex: 1 1 auto;
+  }
+
+  header {
+    min-height: 180px;
+  }
+}
