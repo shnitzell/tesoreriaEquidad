@@ -11,6 +11,7 @@ declare var $: any;
   providedIn: 'root',
 })
 export class ApiService {
+  public IdTokenCoomeva = '';
   private api = environment.api;
   private headers = new HttpHeaders();
   private accesstype: any = [];
@@ -191,6 +192,40 @@ export class ApiService {
       callBack,
       'get',
       { headers: this.getUserClaims() }
+    );
+  }
+
+  getIdToken(callBack) {
+    this.doRequest(
+      environment.coomeva.getTokenUrl,
+      {
+        username: environment.coomeva.username,
+        password: environment.coomeva.password,
+      },
+      callBack,
+      'post',
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        }),
+      }
+    );
+  }
+
+  getGenURL(IdToken, genUrlObject, callBack) {
+    this.doRequest(
+      environment.coomeva.getGeneratedUrl,
+      genUrlObject,
+      callBack,
+      'post',
+      {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + IdToken,
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        }),
+      }
     );
   }
 

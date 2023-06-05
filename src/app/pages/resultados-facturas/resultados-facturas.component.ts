@@ -175,12 +175,64 @@ export class ResultadosFacturasComponent implements OnInit {
       case 'coomeva':
         this.service.presentAlertConfirm(
           '¿Está seguro?',
-          'Esto abrirá una ventana externa con Bancoomeva donde deberá seguir el proceso',
+          'Esto abrirá una ventana externa con Bancoomeva donde deberá seguir el proceso. Recuerda: Sólo se financia una transacción',
           {
             confirmButtonText: 'Confirmar',
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
             icon: 'warning',
+          },
+          (result) => {
+            if (result.isConfirmed) {
+              const getIdTokenCallback = (idTokenObject: any) => {
+                if (
+                  idTokenObject.statusCode >= 200 &&
+                  idTokenObject.statusCode <= 300
+                ) {
+                  const genUrlObject = {
+                    monto: parseInt(modal.monto),
+                    referencia1: modal.poliza,
+                    referencia2: modal.certif,
+                    referencia3: reference,
+                  };
+
+                  this.service.getGenURL(
+                    idTokenObject.data.IdToken,
+                    genUrlObject,
+                    (generatedUrlObject) => {
+                      if (
+                        generatedUrlObject.statusCode >= 200 &&
+                        generatedUrlObject.statusCode <= 300
+                      ) {
+                        this.service.IdTokenCoomeva =
+                          idTokenObject.data.IdToken;
+
+                        this.service.presentAlertConfirm(
+                          '¡Atención!',
+                          'Serás llevado a una página externa',
+                          {
+                            confirmButtonText: 'Confirmar',
+                            icon: 'warning',
+                          },
+                          () => {
+                            window.location.href = generatedUrlObject.data.url;
+                          }
+                        );
+                      }
+                    }
+                  );
+                }
+              };
+
+              if (this.service.IdTokenCoomeva) {
+                getIdTokenCallback({
+                  statusCode: 200,
+                  data: { IdToken: this.service.IdTokenCoomeva },
+                });
+              } else {
+                this.service.getIdToken(getIdTokenCallback);
+              }
+            }
           }
         );
         break;
