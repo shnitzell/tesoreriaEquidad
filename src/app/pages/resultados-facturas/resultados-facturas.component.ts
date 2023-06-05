@@ -206,7 +206,7 @@ export class ResultadosFacturasComponent implements OnInit {
                       idTokenObject.statusCode <= 300
                     ) {
                       const genUrlObject = {
-                        monto: parseInt(modal.monto),
+                        monto: parseInt(modal.pago),
                         referencia1: modal.poliza,
                         referencia2: modal.certif,
                         referencia3: reference,
