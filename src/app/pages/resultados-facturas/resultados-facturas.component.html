@@ -94,13 +94,7 @@
                   <button
                     style="border-color: transparent"
                     class="btn btn-round btn-default btn-simple btn-icon no-caret"
-                    (click)="
-                      pagarCon('coomeva', {
-                        monto: detalle.pago,
-                        poliza: detalle.poliza,
-                        certif: detalle.certif
-                      })
-                    "
+                    (click)="pagarCon('coomeva', detalle)"
                   >
                     <img src="assets/images/bancoomeva-logo.png" width="60" />
                   </button>

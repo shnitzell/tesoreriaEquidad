@@ -184,54 +184,79 @@ export class ResultadosFacturasComponent implements OnInit {
           },
           (result) => {
             if (result.isConfirmed) {
-              const getIdTokenCallback = (idTokenObject: any) => {
-                if (
-                  idTokenObject.statusCode >= 200 &&
-                  idTokenObject.statusCode <= 300
-                ) {
-                  const genUrlObject = {
-                    monto: parseInt(modal.monto),
-                    referencia1: modal.poliza,
-                    referencia2: modal.certif,
-                    referencia3: reference,
-                  };
-
-                  this.service.getGenURL(
-                    idTokenObject.data.IdToken,
-                    genUrlObject,
-                    (generatedUrlObject) => {
-                      if (
-                        generatedUrlObject.statusCode >= 200 &&
-                        generatedUrlObject.statusCode <= 300
-                      ) {
-                        this.service.IdTokenCoomeva =
-                          idTokenObject.data.IdToken;
-
-                        this.service.presentAlertConfirm(
-                          '¡Atención!',
-                          'Serás llevado a una página externa',
-                          {
-                            confirmButtonText: 'Confirmar',
-                            icon: 'warning',
-                          },
-                          () => {
-                            window.location.href = generatedUrlObject.data.url;
-                          }
-                        );
-                      }
-                    }
-                  );
-                }
+              const transaccionCoomeva = {
+                rID: reference,
+                wID: '117653-1664468208-49142',
+                jsonPolizas: JSON.stringify([modal]),
               };
 
-              if (this.service.IdTokenCoomeva) {
-                getIdTokenCallback({
-                  statusCode: 200,
-                  data: { IdToken: this.service.IdTokenCoomeva },
-                });
-              } else {
-                this.service.getIdToken(getIdTokenCallback);
-              }
+              const asyncCall = new Promise((resolve, reject) =>
+                this.service.crearTransaccionWompi(
+                  transaccionCoomeva,
+                  resolve,
+                  reject
+                )
+              );
+
+              asyncCall
+                .then(() => {
+                  const getIdTokenCallback = (idTokenObject: any) => {
+                    if (
+                      idTokenObject.statusCode >= 200 &&
+                      idTokenObject.statusCode <= 300
+                    ) {
+                      const genUrlObject = {
+                        monto: parseInt(modal.monto),
+                        referencia1: modal.poliza,
+                        referencia2: modal.certif,
+                        referencia3: reference,
+                      };
+
+                      this.service.getGenURL(
+                        idTokenObject.data.IdToken,
+                        genUrlObject,
+                        (generatedUrlObject) => {
+                          if (
+                            generatedUrlObject.statusCode >= 200 &&
+                            generatedUrlObject.statusCode <= 300
+                          ) {
+                            this.service.IdTokenCoomeva =
+                              idTokenObject.data.IdToken;
+
+                            this.service.presentAlertConfirm(
+                              '¡Atención!',
+                              'Serás llevado a una página externa',
+                              {
+                                confirmButtonText: 'Confirmar',
+                                icon: 'warning',
+                              },
+                              () => {
+                                window.location.href =
+                                  generatedUrlObject.data.url;
+                              }
+                            );
+                          }
+                        }
+                      );
+                    }
+                  };
+
+                  if (this.service.IdTokenCoomeva) {
+                    getIdTokenCallback({
+                      statusCode: 200,
+                      data: { IdToken: this.service.IdTokenCoomeva },
+                    });
+                  } else {
+                    this.service.getIdToken(getIdTokenCallback);
+                  }
+                })
+                .catch(() =>
+                  this.service.presentToast(
+                    '¡Atención!',
+                    'No podemos comunicarnos con la pasarela en estos momentos',
+                    'warning'
+                  )
+                );
             }
           }
         );
