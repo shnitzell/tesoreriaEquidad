@@ -23,6 +23,14 @@ export class ApiService {
     this.headers.append('No-Auth', 'True');
   }
 
+  writeContents(content, fileName, contentType) {
+    const a = document.createElement('a');
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+  }
+
   generateUUID() {
     var d = new Date().getTime();
     var d2 =
@@ -150,12 +158,14 @@ export class ApiService {
       if (params.hasOwnProperty('DisableEr')) disableEr = true;
       if (typeof params == 'string')
         if (params.includes('DisableEr')) disableEr = true;
-      try {
-        er = JSON.stringify(er);
-        if (!disableEr) this.presentToast('Error: ', er, 'error');
-      } catch (e) {
-        if (!disableEr) this.presentToast('Error: ', er, 'error');
-      }
+
+      if (!disableEr)
+        this.presentToast(
+          'Error: ',
+          'No se ha podido comunicar con el servidor. Contacte soporte en caso de que persista',
+          'error'
+        );
+
       fallback && fallback(er);
     };
 
@@ -258,5 +268,34 @@ export class ApiService {
       {},
       fallback
     );
+  }
+
+  getPDFBancos(transactionData: any, callback) {
+    let headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('userToken'),
+    });
+    this.httpClient
+      .post(`${this.api}/consultas/descargarFactura`, transactionData, {
+        headers: headers,
+        responseType: 'blob',
+      })
+      .pipe(
+        map((resp) => {
+          return resp;
+        })
+      )
+      .subscribe(
+        callback,
+        () => {
+          this.presentToast(
+            'Error: ',
+            'No se ha podido comunicar con el servidor. Contacte soporte en caso de que persista',
+            'error'
+          );
+        },
+        () => {
+          //Swal.close();
+        }
+      );
   }
 }

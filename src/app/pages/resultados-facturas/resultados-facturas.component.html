@@ -37,7 +37,7 @@
     </div>
     <div class="card-body">
       <h4>Listado de pólizas de pago de contado disponibles para pago</h4>
-      <div style="height: 200px; overflow-y: scroll">
+      <div style="height: 250px; overflow-y: scroll">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -57,7 +57,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let poliza of polizas">
+            <ng-container *ngFor="let poliza of polizas; let i = index">
               <tr *ngFor="let detalle of poliza.detalle">
                 <th scope="row">
                   <input
@@ -81,6 +81,7 @@
                     style="margin: 0; padding: 0"
                     [style.color]="detalle.cur == '' ? '' : 'green'"
                     class="btn btn-round btn-default btn-simple btn-icon no-caret"
+                    (click)="descargar(detalle, i)"
                     [disabled]="detalle.cur == ''"
                   >
                     <i
@@ -105,22 +106,14 @@
       </div>
       <div>
         <table class="table table-striped">
-          <thead style="opacity: 0">
-            <tr>
-              <th scope="col">
-                <span class="input-group-text selectable" (click)="selectall()">
-                  <i class="ni ni-check-bold"></i>
-                </span>
-              </th>
-              <th scope="col">Agencia</th>
-              <th scope="col">Producto</th>
-              <th scope="col">Póliza</th>
-              <th scope="col">Certificado</th>
-              <th scope="col">Valor</th>
-              <th scope="col">Fecha limite de pago</th>
-              <th scope="col">Descargue para pago en bancos</th>
-            </tr>
-          </thead>
+          <div
+            class="col-12"
+            style="
+              height: 64px;
+              display: table-row;
+              border-top: 1px solid #dee2e6;
+            "
+          ></div>
           <tfoot
             style="font-weight: bolder; text-align: right"
             *ngIf="polizas.length > 0"

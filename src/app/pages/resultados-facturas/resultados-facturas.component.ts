@@ -38,7 +38,40 @@ export class ResultadosFacturasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.sharing.sharingValue) this.router.navigate(['/search']);
+    if (!this.sharing.sharingValue) {
+      this.service.getFacturas(this.clienteName, (data) => {
+        this.service.closeDialog();
+        if (data.error === 'true') {
+          this.service.presentToast(
+            '¡Error! ',
+            'No se ha podido procesar la solicitud',
+            'error'
+          );
+          this.router.navigate(['/search']);
+        } else {
+          try {
+            const resultados = JSON.parse(data.bodyData);
+            if (resultados.respuesta == '1') {
+              this.polizas = this.sharing.sharingValue = resultados.resultado;
+            } else {
+              this.service.presentToast(
+                '¡Atención!',
+                'El cliente no tiene pólizas pendientes de pago, si cree que es un error comuniquese con Seguros La Equidad',
+                'warning'
+              );
+              this.router.navigate(['/search']);
+            }
+          } catch (e) {
+            this.service.presentToast(
+              '¡Error! ',
+              'No se ha podido procesar la solicitud. ' + e,
+              'error'
+            );
+            this.router.navigate(['/search']);
+          }
+        }
+      });
+    }
     this.polizas = this.sharing.sharingValue || [];
   }
 
@@ -80,6 +113,29 @@ export class ResultadosFacturasComponent implements OnInit {
     }
 
     return deuda;
+  }
+
+  descargar(detalle, idx) {
+    console.log('consultando');
+    this.service.getPDFBancos(
+      { numeroId: detalle.cur, rowNum: idx + 1 },
+      (data) => {
+        try {
+          this.service.closeDialog();
+          this.service.writeContents(
+            data,
+            'formulario_pago' + new Date().toISOString() + '.pdf',
+            'application/pdf'
+          );
+        } catch (e) {
+          this.service.presentToast(
+            '¡Error! ',
+            'No se ha podido procesar la solicitud. ' + e,
+            'error'
+          );
+        }
+      }
+    );
   }
 
   pagarCon(metodo, modal = null) {
