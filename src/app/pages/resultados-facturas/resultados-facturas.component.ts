@@ -118,7 +118,7 @@ export class ResultadosFacturasComponent implements OnInit {
   descargar(detalle, idx) {
     console.log('consultando');
     this.service.getPDFBancos(
-      { numeroId: detalle.cur, rowNum: idx + 1 },
+      { numeroId: this.clienteName, rowNum: idx + 1 },
       (data) => {
         try {
           this.service.closeDialog();
