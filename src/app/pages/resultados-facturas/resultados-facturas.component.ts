@@ -29,9 +29,10 @@ export class ResultadosFacturasComponent implements OnInit {
     private service: ApiService,
     private sharing: SharingService
   ) {
-    config.backdrop = 'static';
+    //config.backdrop = 'static';
     config.keyboard = false;
     config.size = 'lg';
+    config.windowClass = 'transparent-modal';
     this.route.queryParams.subscribe(
       (params) => (this.clienteName = params['numeroId'])
     );
@@ -138,6 +139,29 @@ export class ResultadosFacturasComponent implements OnInit {
     );
   }
 
+  financiaCon(detalle) {
+    const alert = {
+      title: '<strong>¡Financia con nuestras entidades aliadas!</strong>',
+      iconHtml: ' <img src="assets/images/financiar.png" width="60" />',
+      html: 'Gracias a nuestros aliados puedes financiar tu factura, selecciona una de nuestros proveedores',
+      showCloseButton: true,
+      focusConfirm: false,
+      confirmButtonColor: 'transparent',
+      confirmButtonText:
+        '<img src="assets/images/bancoomeva-logo.png" height="40" />',
+      confirmButtonAriaLabel: 'Bancoomeva',
+      customClass: {
+        icon: 'iconBox',
+      },
+    };
+
+    const entidadesCallback = (result) => {
+      if (result.isConfirmed) this.pagarCon('coomeva', detalle);
+    };
+
+    this.service.presentAlertConfirm('', '', alert, entidadesCallback);
+  }
+
   pagarCon(metodo, modal = null) {
     const reference = this.service.generateUUID();
     let polizasAPagar = [];
@@ -217,6 +241,15 @@ export class ResultadosFacturasComponent implements OnInit {
               inTestEnvironment: true,
               callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
             });
+            console.log(kushki);
+            if (kushki._iFrame.readyState == 'complete') {
+              //iframe.contentWindow.alert("Hello");
+              kushki._iFrame.contentWindow.onload = function () {
+                alert('I am loaded');
+              };
+              // The loading is complete, call the function we want executed once the iframe is loaded
+              alert('I am here');
+            }
           })
           .catch(() =>
             this.service.presentToast(

@@ -1,27 +1,6 @@
 <ng-template #asignarVend let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Pago con Kushki</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="d('Cross click')"
-    ></button>
-  </div>
   <div class="modal-body">
-    <h4>(Puede tardar un rato en cargar)</h4>
-    <form id="kushki-pay-form" action="confirm" method="post">
-      <input type="hidden" name="cart_id" value="123" />
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      (click)="c('Cancel click')"
-    >
-      Cancelar
-    </button>
+    <form id="kushki-pay-form" action="confirm" method="post"></form>
   </div>
 </ng-template>
 
@@ -51,9 +30,9 @@
               <th scope="col">Póliza</th>
               <th scope="col">Certificado</th>
               <th scope="col">Valor</th>
-              <th scope="col">Fecha limite de pago</th>
-              <th scope="col">Descargue para pago en bancos</th>
-              <th scope="col">Financia con</th>
+              <th scope="col">Fecha limite</th>
+              <th scope="col">Pago en bancos</th>
+              <th scope="col">Financia</th>
             </tr>
           </thead>
           <tbody>
@@ -93,14 +72,16 @@
 
                 <td>
                   <button
-                    style="border-color: transparent"
+                    style="margin: 0; padding: 0; border-color: transparent"
                     class="btn btn-round btn-default btn-simple btn-icon no-caret"
-                    (click)="pagarCon('coomeva', detalle)"
+                    (click)="financiaCon(detalle)"
                   >
-                    <img src="assets/images/bancoomeva-logo.png" width="60" />
+                    <img src="assets/images/financiar.png" width="35" />
+                    <!-- <i style="font-size: 25px" class="ni ni-shop"></i> -->
                   </button>
-                </td></tr
-            ></ng-container>
+                </td>
+              </tr></ng-container
+            >
           </tbody>
         </table>
       </div>

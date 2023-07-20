@@ -63,13 +63,8 @@ export class ApiService {
     let options = {
       title: title,
       text: mensaje,
+      ...additionalOpt,
     };
-
-    if (additionalOpt) {
-      for (let it in additionalOpt) {
-        options[it] = additionalOpt[it];
-      }
-    }
 
     Swal.fire(options).then(callback);
   }
