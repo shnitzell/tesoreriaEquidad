@@ -141,9 +141,9 @@ export class ResultadosFacturasComponent implements OnInit {
 
   financiaCon(detalle) {
     const alert = {
-      title: '<strong>¡Financia con nuestras entidades aliadas!</strong>',
+      title: '<strong>Selecciona la financiera de tu preferencia</strong>',
       iconHtml: ' <img src="assets/images/financiar.png" width="60" />',
-      html: 'Gracias a nuestros aliados puedes financiar tu factura, selecciona una de nuestros proveedores',
+      html: '',
       showCloseButton: true,
       focusConfirm: false,
       confirmButtonColor: 'transparent',
