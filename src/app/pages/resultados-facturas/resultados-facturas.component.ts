@@ -78,15 +78,12 @@ export class ResultadosFacturasComponent implements OnInit {
   }
 
   selectall() {
-    this.polizas.map(
-      (poliza) =>
-        (poliza.detalle = poliza.detalle.map((data) => {
-          if (data.permite) {
-            data.selected = !data.selected;
-          }
-          return data;
-        }))
-    );
+    this.polizas.map((data) => {
+      if (!data.fechaPagoExpirada) {
+        data.selected = !data.selected;
+      }
+      return data;
+    });
   }
 
   totalChanged() {}
@@ -94,10 +91,8 @@ export class ResultadosFacturasComponent implements OnInit {
   sumarDeuda() {
     let deuda: number = 0;
 
-    for (let poliza of this.polizas) {
-      for (let detalle of poliza.detalle) {
-        deuda += parseInt(detalle.pago);
-      }
+    for (let detalle of this.polizas) {
+      deuda += parseInt(detalle.totalPagar);
     }
 
     return deuda;
@@ -106,11 +101,9 @@ export class ResultadosFacturasComponent implements OnInit {
   sumarDeudaSeleccionada() {
     let deuda: number = 0;
 
-    for (let poliza of this.polizas) {
-      for (let detalle of poliza.detalle) {
-        if (detalle.permite && detalle.selected) {
-          deuda += parseInt(detalle.pago);
-        }
+    for (let detalle of this.polizas) {
+      if (!detalle.fechaPagoExpirada && detalle.selected) {
+        deuda += parseInt(detalle.totalPagar);
       }
     }
 
@@ -167,11 +160,10 @@ export class ResultadosFacturasComponent implements OnInit {
   pagarCon(metodo, modal = null) {
     const reference = this.service.generateUUID();
     let polizasAPagar = [];
-    for (let poliza of this.polizas) {
-      for (let detalle of poliza.detalle) {
-        if (detalle.permite && detalle.selected) {
-          polizasAPagar.push(detalle);
-        }
+
+    for (let detalle of this.polizas) {
+      if (detalle.permite && detalle.selected) {
+        polizasAPagar.push(detalle);
       }
     }
 

@@ -36,52 +36,50 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let poliza of polizas; let i = index">
-              <tr *ngFor="let detalle of poliza.detalle">
-                <th scope="row">
-                  <input
-                    type="checkbox"
-                    class="inputCheck"
-                    [(ngModel)]="detalle.selected"
-                    (click)="totalChanged()"
-                    [disabled]="!detalle.permite"
-                  />
-                </th>
-                <th>{{ detalle.nsucur }}</th>
-                <td>{{ detalle.producto }}</td>
-                <td>{{ detalle.poliza }}</td>
-                <td>{{ detalle.certif }}</td>
-                <td>{{ detalle.pago | currency }}</td>
-                <td>{{ detalle["fecha maxima"] }}</td>
+            <tr *ngFor="let detalle of polizas; let i = index">
+              <th scope="row">
+                <input
+                  type="checkbox"
+                  class="inputCheck"
+                  [(ngModel)]="detalle.selected"
+                  (click)="totalChanged()"
+                  [disabled]="detalle.fechaPagoExpirada"
+                />
+              </th>
+              <th>{{ detalle.compania }}</th>
+              <td>{{ detalle.nombreProducto }}</td>
+              <td>{{ detalle.codigoPoliza }}</td>
+              <td>{{ detalle.certificadoPoliza }}</td>
+              <td>{{ detalle.totalPagar | currency }}</td>
+              <td>{{ detalle.fechaLimitePago }}</td>
 
-                <td>
-                  <button
-                    type="button"
-                    style="margin: 0; padding: 0"
-                    [style.color]="detalle.cur == '' ? '' : 'green'"
-                    class="btn btn-round btn-default btn-simple btn-icon no-caret"
-                    (click)="descargar(detalle, i)"
-                    [disabled]="detalle.cur == ''"
-                  >
-                    <i
-                      style="font-size: 35px"
-                      class="ni ni-cloud-download-95"
-                    ></i>
-                  </button>
-                </td>
+              <td>
+                <button
+                  type="button"
+                  style="margin: 0; padding: 0"
+                  [style.color]="detalle.cur == '' ? '' : 'green'"
+                  class="btn btn-round btn-default btn-simple btn-icon no-caret"
+                  (click)="descargar(detalle, i)"
+                  [disabled]="detalle.cur == ''"
+                >
+                  <i
+                    style="font-size: 35px"
+                    class="ni ni-cloud-download-95"
+                  ></i>
+                </button>
+              </td>
 
-                <td>
-                  <button
-                    style="margin: 0; padding: 0; border-color: transparent"
-                    class="btn btn-round btn-default btn-simple btn-icon no-caret"
-                    (click)="financiaCon(detalle)"
-                  >
-                    <img src="assets/images/financiar.png" width="35" />
-                    <!-- <i style="font-size: 25px" class="ni ni-shop"></i> -->
-                  </button>
-                </td>
-              </tr></ng-container
-            >
+              <td>
+                <button
+                  style="margin: 0; padding: 0; border-color: transparent"
+                  class="btn btn-round btn-default btn-simple btn-icon no-caret"
+                  (click)="financiaCon(detalle)"
+                >
+                  <img src="assets/images/financiar.png" width="35" />
+                  <!-- <i style="font-size: 25px" class="ni ni-shop"></i> -->
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
