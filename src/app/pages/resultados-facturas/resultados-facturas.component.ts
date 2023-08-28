@@ -51,9 +51,10 @@ export class ResultadosFacturasComponent implements OnInit {
           this.router.navigate(['/search']);
         } else {
           try {
-            const resultados = JSON.parse(data.bodyData);
-            if (resultados.respuesta == '1') {
-              this.polizas = this.sharing.sharingValue = resultados.resultado;
+            const resultados = data.bodyData;
+
+            if (resultados.length) {
+              this.polizas = this.sharing.sharingValue = resultados;
             } else {
               this.service.presentToast(
                 '¡Atención!',
