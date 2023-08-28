@@ -144,6 +144,7 @@ export class ResultadosFacturasComponent implements OnInit {
       title: '<strong>Selecciona la financiera de tu preferencia</strong>',
       iconHtml: ' <img src="assets/images/financiar.png" width="60" />',
       html: '',
+      showConfirmButton: false,
       showCloseButton: true,
       focusConfirm: false,
       confirmButtonColor: 'transparent',
