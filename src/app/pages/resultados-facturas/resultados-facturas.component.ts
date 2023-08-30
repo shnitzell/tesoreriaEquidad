@@ -79,7 +79,7 @@ export class ResultadosFacturasComponent implements OnInit {
 
   selectall() {
     this.polizas.map((data) => {
-      if (data.fechaPagoExpirada) {
+      if (!data.fechaPagoExpirada) {
         data.selected = !data.selected;
       }
       return data;
@@ -102,7 +102,7 @@ export class ResultadosFacturasComponent implements OnInit {
     let deuda: number = 0;
 
     for (let detalle of this.polizas) {
-      if (detalle.fechaPagoExpirada && detalle.selected) {
+      if (!detalle.fechaPagoExpirada && detalle.selected) {
         deuda += parseInt(detalle.totalPagar);
       }
     }
