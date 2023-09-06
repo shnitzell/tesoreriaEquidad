@@ -162,7 +162,7 @@ export class ResultadosFacturasComponent implements OnInit {
     let polizasAPagar = [];
 
     for (let detalle of this.polizas) {
-      if (detalle.permite && detalle.selected) {
+      if (!detalle.fechaPagoExpirada && detalle.selected) {
         polizasAPagar.push(detalle);
       }
     }
@@ -193,12 +193,20 @@ export class ResultadosFacturasComponent implements OnInit {
         );
 
         asyncCall
-          .then(() => {
-            checkout.open(function (result) {
-              var transaction = result.transaction;
-              console.log('Transaction ID: ', transaction.id);
-              console.log('Transaction object: ', transaction);
-            });
+          .then((response: any) => {
+            if (response.success) {
+              checkout.open(function (result) {
+                var transaction = result.transaction;
+                console.log('Transaction ID: ', transaction.id);
+                console.log('Transaction object: ', transaction);
+              });
+            } else {
+              this.service.presentToast(
+                '¡Atención!',
+                'No podemos comunicarnos con la pasarela en estos momentos',
+                'warning'
+              );
+            }
           })
           .catch(() =>
             this.service.presentToast(

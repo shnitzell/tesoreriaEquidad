@@ -12,24 +12,28 @@ const routes: Routes = [
   },
   {
     path: 'results',
-    component: ResultadosFacturasComponent
+    component: ResultadosFacturasComponent,
   },
   {
     path: 'transaccion',
-    component: TransaccionComponent
+    component: TransaccionComponent,
+  },
+  {
+    path: 'confirm',
+    component: TransaccionComponent,
   },
   // {
   //   path: 'landing',
   //   component: LandingComponent
-  // }, 
+  // },
   {
     path: '**',
-    redirectTo: 'search'
+    redirectTo: 'search',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
