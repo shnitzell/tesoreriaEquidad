@@ -37,47 +37,50 @@ export class TransaccionComponent implements OnInit {
       this.resultID = params['rID'];
       this.transactionID = params['id'];
 
-      this.service.getEstadoTransaccionWompi(
-        this.transactionID,
-        (wompiResponse) => {
-          this.service.notifyWompiBack({
-            check: this.checkoutMethod,
-            rID: this.resultID,
-            id: this.transactionID,
-          });
+      if (this.checkoutMethod === 'wompi') {
+        this.service.getEstadoTransaccionWompi(
+          this.transactionID,
+          (wompiResponse) => {
+            this.service.notifyWompiBack({
+              check: this.checkoutMethod,
+              rID: this.resultID,
+              id: this.transactionID,
+            });
 
-          this.valorPago = wompiResponse.data.amount_in_cents / 100;
-          this.fechaPago = wompiResponse.data.created_at;
-          this.desdePago = wompiResponse.data.payment_method_type;
-          this.productoPago =
-            wompiResponse.data.payment_method.payment_description;
+            this.valorPago = wompiResponse.data.amount_in_cents / 100;
+            this.fechaPago = wompiResponse.data.created_at;
+            this.desdePago = wompiResponse.data.payment_method_type;
+            this.productoPago =
+              wompiResponse.data.payment_method.payment_description;
 
-          switch (wompiResponse.data.status) {
-            case 'PENDING':
-              this.state = 'p';
-              setTimeout(() => this.ngOnInit(), 5000);
-              break;
-            case 'APPROVED':
-              this.state = 'e';
-              break;
-            case 'DECLINED':
-              this.state = 'd';
-              break;
-            case 'VOIDED':
-              this.state = 'v';
-              break;
-            default:
-              this.state = 'f';
-              break;
+            switch (wompiResponse.data.status) {
+              case 'PENDING':
+                this.state = 'p';
+                setTimeout(() => this.ngOnInit(), 5000);
+                break;
+              case 'APPROVED':
+                this.state = 'e';
+                break;
+              case 'DECLINED':
+                this.state = 'd';
+                break;
+              case 'VOIDED':
+                this.state = 'v';
+                break;
+              default:
+                this.state = 'f';
+                break;
+            }
+          },
+          () => {
+            this.state = 'f';
+            this.fechaPago = new Date().toISOString();
+            this.desdePago = 'Ningún banco';
+            this.productoPago = 'No existe transacción';
           }
-        },
-        () => {
-          this.state = 'f';
-          this.fechaPago = new Date().toISOString();
-          this.desdePago = 'Ningún banco';
-          this.productoPago = 'No existe transacción';
-        }
-      );
+        );
+      } else if (this.checkoutMethod === 'kushki') {
+      }
     });
   }
 

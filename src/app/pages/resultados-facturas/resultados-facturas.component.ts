@@ -171,6 +171,7 @@ export class ResultadosFacturasComponent implements OnInit {
       rID: reference,
       wID: '117653-1664468208-49142',
       jsonPolizas: JSON.stringify(polizasAPagar),
+      medio: '',
     };
 
     switch (metodo) {
@@ -179,6 +180,8 @@ export class ResultadosFacturasComponent implements OnInit {
           'referencia: ' + reference,
           `${environment.host}/transaccion?check=wompi&rID=${reference}`
         );
+
+        transaccion['medio'] = 'wompi';
 
         var checkout = new WidgetCheckout({
           currency: 'COP',
@@ -222,6 +225,8 @@ export class ResultadosFacturasComponent implements OnInit {
         // kushki.aplicaRecaudo.aplica=http://192.168.243.32:8080/aplicarRecaudo
 
         this.modalService.open(modal);
+
+        transaccion['medio'] = 'kushki';
 
         const asyncCall2 = new Promise((resolve, reject) =>
           this.service.crearTransaccionWompi(transaccion, resolve, reject)
