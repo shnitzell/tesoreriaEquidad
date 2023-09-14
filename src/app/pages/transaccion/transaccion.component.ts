@@ -44,7 +44,7 @@ export class TransaccionComponent implements OnInit {
             this.service.notifyWompiBack({
               check: this.checkoutMethod,
               rID: this.resultID,
-              id: this.transactionID,
+              wID: this.transactionID,
             });
 
             this.valorPago = wompiResponse.data.amount_in_cents / 100;
