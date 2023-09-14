@@ -1,69 +1,60 @@
 <!-- Toolbar -->
 <div
   class="accesibility-toolbar text-center container-fluid"
-  style="background-color: #30a133"
+  style="background-color: #2a6439"
   id="headerTop"
 >
-  <nav class="nav justify-content-end col-12">
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        href="https://laequidadseguros.coop/contacto"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Servicio al cliente</a
-      >
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/preguntas-frecuentes">Educación Financiera</a>
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        href="https://equinet.laequidadseguros.coop/app.php/staff"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Equinet</a
-      >
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        href="https://provalidarpoliza.azurewebsites.net/860028415/verify"
-        >Validación cumplimiento</a
-      >
-    </li>
-    <li>
-      <div class="span2">
-        <div class="search buscador mod_search93">
-          <form
-            action="/component/search/"
-            method="post"
-            class="form-inline"
-            role="search"
-          >
-            <input
-              (keydown.enter)="gotoSearch()"
-              [(ngModel)]="searchField"
-              name="searchword"
-              id="mod-search-searchword93"
-              maxlength="200"
-              class="inputbox search-query input-medium"
-              type="search"
-              size="20"
-              placeholder="Buscar..."
-            />
-            <input
-              type="image"
-              alt="Buscar"
-              class="button"
-              src="https://www.laequidadseguros.coop/templates/equidad/images/searchButton.gif"
-              onclick="this.form.searchword.focus();"
-            />
-          </form>
-        </div>
+  <nav class="nav justify-content-center col-12">
+    <ul class="row">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="https://laequidadseguros.coop/contacto/servicio-al-cliente/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Servicio al cliente</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="https://reclamacion.laequidadseguros.coop/appnetunity/UnityForm.aspx?d1=ARsmL5uXAiT6LZ5htFO7btAhlNpChdIhkC11TZet7txnsH8AtD3DvZSdtUp8bhYagGq6DoKw2%2fssNJk%2btPtmKZOxaWb9t5OY0SUvQpo27BSNPFi%2bTE7ld%2f%2bzrxPRwd8%2bPv2qmbMJcwmmoUSgg7cJ78I3OE%2b3bezPXasQmQXfYl4vJUxyh4LqbnymXqldnqu0w%2ba9VJhEmwpVD2qm53sPaXU%3d"
+          >Radicación cuenta de cobro ARL</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="https://provalidarpoliza.azurewebsites.net/860028415/verify"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Validación Póliza de Cumplimiento</a
+        >
+      </li>
+    </ul>
+
+    <div class="span2">
+      <div class="search buscador mod_search93">
+        <form
+          action="/component/search/"
+          method="post"
+          class="form-inline"
+          role="search"
+        >
+          <input
+            (keydown.enter)="gotoSearch()"
+            [(ngModel)]="searchField"
+            name="searchword"
+            id="mod-search-searchword93"
+            maxlength="200"
+            class="inputbox search-query input-medium"
+            type="search"
+            size="20"
+            placeholder="Buscar..."
+          />
+        </form>
       </div>
-    </li>
+    </div>
   </nav>
 </div>
 
@@ -2564,31 +2555,6 @@
   </div>
 
   <div class="span2 visible-desktop">
-    <div class="custom contServLinea">
-      <p>
-        <a
-          href="https://servicios.laequidadseguros.coop/"
-          rel="alternate noopener noreferrer"
-          target="_blank"
-          title="Servicios En Línea"
-          ><img
-            src="https://www.laequidadseguros.coop/images/iconoServiciosEnLinea.png"
-            title="iconoServiciosEnLinea image"
-            alt="iconoServiciosEnLinea La Equidad Seguros - Una aseguradora cooperativa con sentido social"
-            width="135"
-            height="59" /></a
-        ><a
-          href="https://www.laequidadseguros.coop/la-equidad/linea-etica"
-          rel="alternate"
-          ><img
-            src="https://www.laequidadseguros.coop/images/logo_linea_etica-02.jpg"
-            title="logo_linea_etica-02 image"
-            style="margin-top: 2em"
-            alt="logo_linea_etica-02 La Equidad Seguros - Una aseguradora cooperativa con sentido social"
-            width="139"
-            height="32"
-        /></a>
-      </p>
-    </div>
+    <div class="custom contServLinea"></div>
   </div>
 </div>

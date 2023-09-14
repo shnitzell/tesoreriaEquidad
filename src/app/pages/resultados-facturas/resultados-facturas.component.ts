@@ -162,7 +162,7 @@ export class ResultadosFacturasComponent implements OnInit {
     let polizasAPagar = [];
 
     for (let detalle of this.polizas) {
-      if (detalle.fechaPagoExpirada && detalle.selected) {
+      if (detalle.permitePago && detalle.selected) {
         polizasAPagar.push(detalle);
       }
     }
