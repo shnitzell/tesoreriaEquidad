@@ -138,7 +138,7 @@ export class ResultadosFacturasComponent implements OnInit {
       title: '<strong>Selecciona la financiera de tu preferencia</strong>',
       iconHtml: ' <img src="assets/images/financiar.png" width="60" />',
       html: '',
-      showConfirmButton: false,
+      showConfirmButton: true,
       showCloseButton: true,
       focusConfirm: false,
       confirmButtonColor: 'transparent',
@@ -158,7 +158,7 @@ export class ResultadosFacturasComponent implements OnInit {
   }
 
   pagarCon(metodo, modal = null) {
-    const reference = this.service.generateUUID();
+    //const reference = this.service.generateUUID();
     let polizasAPagar = [];
 
     for (let detalle of this.polizas) {
@@ -167,6 +167,10 @@ export class ResultadosFacturasComponent implements OnInit {
       }
     }
 
+    const referenceFirstDocument = polizasAPagar[0];
+    const reference = `${referenceFirstDocument.codigoAgencia}-${referenceFirstDocument.asegurado}-${referenceFirstDocument.codigoPoliza}-${referenceFirstDocument.certificadoPoliza}`;
+
+    console.log(reference);
     const transaccion = {
       rID: reference,
       wID: '117653-1664468208-49142',
@@ -303,9 +307,9 @@ export class ResultadosFacturasComponent implements OnInit {
                     ) {
                       const genUrlObject = {
                         monto: parseInt(modal.pago),
-                        referencia1: modal.poliza,
-                        referencia2: modal.certif,
-                        referencia3: reference,
+                        referencia1: modal.codigoAgencia,
+                        referencia2: modal.codigoPoliza,
+                        referencia3: modal.certificadoPoliza,
                       };
 
                       this.service.getGenURL(

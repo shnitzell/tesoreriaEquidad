@@ -32,7 +32,7 @@
               <th scope="col">Valor</th>
               <th scope="col">Fecha limite</th>
               <th scope="col">Pago en bancos</th>
-              <!-- <th scope="col">Financia</th> -->
+              <th scope="col">Financia</th>
             </tr>
           </thead>
           <tbody>
@@ -69,15 +69,15 @@
                 </button>
               </td>
 
-              <!-- <td>
+              <td>
                 <button
                   style="margin: 0; padding: 0; border-color: transparent"
                   class="btn btn-round btn-default btn-simple btn-icon no-caret"
                   (click)="financiaCon(detalle)"
                 >
-                  <img src="assets/images/financiar.png" width="35" />                  
+                  <img src="assets/images/financiar.png" width="35" />
                 </button>
-              </td> -->
+              </td>
             </tr>
           </tbody>
         </table>
@@ -112,7 +112,7 @@
                 {{ sumarDeudaSeleccionada() | currency }}
               </td>
 
-              <td colspan="2">
+              <td colspan="2" class="row">
                 <button
                   style="border-color: transparent"
                   class="btn btn-outline-success col-4 offset-2"
@@ -123,11 +123,11 @@
                 </button>
                 <button
                   style="border-color: transparent"
-                  class="btn btn-outline-success col-4"
+                  class="btn btn-outline-success col-5"
                   (click)="pagarCon('wompi')"
                   [disabled]="sumarDeudaSeleccionada() == 0"
                 >
-                  <img src="assets/images/banco-logo.png" width="100" />
+                  <img src="assets/images/banco-logo.jpg" width="200" />
                 </button>
               </td>
             </tr>
