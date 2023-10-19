@@ -167,10 +167,9 @@ export class ResultadosFacturasComponent implements OnInit {
       }
     }
 
-    const referenceFirstDocument = polizasAPagar[0];
+    const referenceFirstDocument = polizasAPagar[0] ?? modal;
     const reference = `${referenceFirstDocument.codigoAgencia}-${referenceFirstDocument.asegurado}-${referenceFirstDocument.codigoPoliza}-${referenceFirstDocument.certificadoPoliza}`;
 
-    console.log(reference);
     const transaccion = {
       rID: reference,
       wID: '117653-1664468208-49142',
@@ -306,7 +305,7 @@ export class ResultadosFacturasComponent implements OnInit {
                       idTokenObject.statusCode <= 300
                     ) {
                       const genUrlObject = {
-                        monto: parseInt(modal.pago),
+                        monto: parseInt(modal.totalPagar),
                         referencia1: modal.codigoAgencia,
                         referencia2: modal.codigoPoliza,
                         referencia3: modal.certificadoPoliza,
