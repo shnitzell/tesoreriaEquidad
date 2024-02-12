@@ -20,6 +20,7 @@ export class ResultadosFacturasComponent implements OnInit {
 
   public clienteName: string = '';
   public polizas: any = [];
+  public rIdReference = '';
 
   constructor(
     private router: Router,
@@ -51,7 +52,13 @@ export class ResultadosFacturasComponent implements OnInit {
           this.router.navigate(['/search']);
         } else {
           try {
-            const resultados = data.bodyData;
+            const resultados = data.bodyData.map((dat) => {
+              return {
+                ...dat,
+                permiteFinancia: dat.permiteFinancia === 'true',
+                permitePago: dat.permitePago === 'true',
+              };
+            });
 
             if (resultados.length) {
               this.polizas = this.sharing.sharingValue = resultados;
@@ -134,27 +141,29 @@ export class ResultadosFacturasComponent implements OnInit {
   }
 
   financiaCon(detalle) {
-    const alert = {
-      title: '<strong>Selecciona la financiera de tu preferencia</strong>',
-      iconHtml: ' <img src="assets/images/financiar.png" width="60" />',
-      html: '',
-      showConfirmButton: true,
-      showCloseButton: true,
-      focusConfirm: false,
-      confirmButtonColor: 'transparent',
-      confirmButtonText:
-        '<img src="assets/images/bancoomeva-logo.png" height="40" />',
-      confirmButtonAriaLabel: 'Bancoomeva',
-      customClass: {
-        icon: 'iconBox',
-      },
-    };
+    if (detalle.permiteFinancia) {
+      const alert = {
+        title: '<strong>Selecciona la financiera de tu preferencia</strong>',
+        iconHtml: ' <img src="assets/images/financiar.png" width="60" />',
+        html: '',
+        showConfirmButton: true,
+        showCloseButton: true,
+        focusConfirm: false,
+        confirmButtonColor: 'transparent',
+        confirmButtonText:
+          '<img src="assets/images/bancoomeva-logo.png" height="40" />',
+        confirmButtonAriaLabel: 'Bancoomeva',
+        customClass: {
+          icon: 'iconBox',
+        },
+      };
 
-    const entidadesCallback = (result) => {
-      if (result.isConfirmed) this.pagarCon('coomeva', detalle);
-    };
+      const entidadesCallback = (result) => {
+        if (result.isConfirmed) this.pagarCon('coomeva', detalle);
+      };
 
-    this.service.presentAlertConfirm('', '', alert, entidadesCallback);
+      this.service.presentAlertConfirm('', '', alert, entidadesCallback);
+    }
   }
 
   pagarCon(metodo, modal = null) {
@@ -237,21 +246,19 @@ export class ResultadosFacturasComponent implements OnInit {
 
         asyncCall2
           .then(() => {
+            this.rIdReference = reference;
             var kushki = new KushkiCheckout({
+              kformId: 'GXInX0CWI',
               form: 'kushki-pay-form',
-              merchant_id: '1000000530206406278515561278883',
+              publicMerchantId: 'beda4a9f308c487bb11d84e41f296db0',
               amount: {
                 subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
                 iva: 0, // Set it to 0 in case the transaction has no taxes
                 subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
-                ice: 0, // Set it to 0 in case the transaction has no ICE (Impuesto a consumos especiales)
               },
-              currency: 'COP',
-              payment_methods: ['transfer'],
               inTestEnvironment: true,
-              callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
+              //callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
             });
-            console.log(kushki);
             if (kushki._iFrame.readyState == 'complete') {
               //iframe.contentWindow.alert("Hello");
               kushki._iFrame.contentWindow.onload = function () {

@@ -45,12 +45,18 @@ export class SearchComponent implements OnInit {
       if (data.error === 'true') {
         this.service.presentToast(
           '¡Error! ',
-          'No se ha podido procesar la solicitud',
+          'No se ha podido procesar la solicitud debido a un problema en el servidor',
           'error'
         );
       } else {
         try {
-          const resultados = data.bodyData;
+          const resultados = data.bodyData.map((dat) => {
+            return {
+              ...dat,
+              permiteFinancia: dat.permiteFinancia === 'true',
+              permitePago: dat.permitePago === 'true',
+            };
+          });
 
           if (resultados.length) {
             this.sharing.sharingValue = resultados;
@@ -67,7 +73,8 @@ export class SearchComponent implements OnInit {
         } catch (e) {
           this.service.presentToast(
             '¡Error! ',
-            'No se ha podido procesar la solicitud. ' + e,
+            'No se ha podido procesar la solicitud debido a un problema con los datos. ' +
+              e,
             'error'
           );
         }

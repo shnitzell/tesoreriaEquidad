@@ -1,6 +1,8 @@
 <ng-template #asignarVend let-c="close" let-d="dismiss">
   <div class="modal-body">
-    <form id="kushki-pay-form" action="confirm" method="post"></form>
+    <form id="kushki-pay-form" action="/transaccion?check=kushki" method="post">
+      <input type="hidden" name="rID" [value]="rIdReference" />
+    </form>
   </div>
 </ng-template>
 
@@ -73,6 +75,7 @@
                 <button
                   style="margin: 0; padding: 0; border-color: transparent"
                   class="btn btn-round btn-default btn-simple btn-icon no-caret"
+                  [disabled]="!detalle.permiteFinancia"
                   (click)="financiaCon(detalle)"
                 >
                   <img src="assets/images/financiar.png" width="35" />
