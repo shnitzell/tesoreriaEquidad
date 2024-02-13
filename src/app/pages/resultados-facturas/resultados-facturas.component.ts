@@ -93,6 +93,12 @@ export class ResultadosFacturasComponent implements OnInit {
     });
   }
 
+  canSelect(detalle) {
+    const poliza = this.polizas.filter((poliza) => poliza.selected);
+    if (!poliza.length) return true;
+    return detalle.codigoCompania === poliza[0].codigoCompania;
+  }
+
   totalChanged() {}
 
   sumarDeuda() {
