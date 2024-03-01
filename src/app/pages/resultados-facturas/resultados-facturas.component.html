@@ -1,6 +1,10 @@
 <ng-template #asignarVend let-c="close" let-d="dismiss">
   <div class="modal-body">
-    <form id="kushki-pay-form" action="/transaccion?check=kushki" method="post">
+    <form
+      id="kushki-pay-form"
+      action="/tesoreria-services/transaccion?check=kushki"
+      method="post"
+    >
       <input type="hidden" name="rID" [value]="rIdReference" />
     </form>
   </div>
