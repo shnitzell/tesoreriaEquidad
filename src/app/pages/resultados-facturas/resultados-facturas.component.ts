@@ -194,94 +194,98 @@ export class ResultadosFacturasComponent implements OnInit {
 
     switch (metodo) {
       case 'wompi':
-        console.log(
-          'referencia: ' + reference,
-          `${environment.host}/transaccion?check=wompi&rID=${reference}`
-        );
+        {
+          console.log(
+            'referencia: ' + reference,
+            `${environment.host}/transaccion?check=wompi&rID=${reference}`
+          );
 
-        transaccion['medio'] = 'wompi';
+          transaccion['medio'] = 'wompi';
 
-        var checkout = new WidgetCheckout({
-          currency: 'COP',
-          amountInCents: this.sumarDeudaSeleccionada() * 100,
-          reference: reference,
-          publicKey: environment.wompiKey,
-          redirectUrl: `${environment.host}/transaccion?check=wompi&rID=${reference}`,
-        });
+          const checkout = new WidgetCheckout({
+            currency: 'COP',
+            amountInCents: this.sumarDeudaSeleccionada() * 100,
+            reference: reference,
+            publicKey: environment.wompiKey,
+            redirectUrl: `${environment.host}/transaccion?check=wompi&rID=${reference}`,
+          });
 
-        const asyncCall = new Promise((resolve, reject) =>
-          this.service.crearTransaccionWompi(transaccion, resolve, reject)
-        );
+          const asyncCall = new Promise((resolve, reject) =>
+            this.service.crearTransaccionWompi(transaccion, resolve, reject)
+          );
 
-        asyncCall
-          .then((response: any) => {
-            if (response.success) {
-              checkout.open(function (result) {
-                var transaction = result.transaction;
-                console.log('Transaction ID: ', transaction.id);
-                console.log('Transaction object: ', transaction);
-              });
-            } else {
+          asyncCall
+            .then((response: any) => {
+              if (response.success) {
+                checkout.open(function (result) {
+                  var transaction = result.transaction;
+                  console.log('Transaction ID: ', transaction.id);
+                  console.log('Transaction object: ', transaction);
+                });
+              } else {
+                this.service.presentToast(
+                  '¡Atención!',
+                  'No podemos comunicarnos con la pasarela en estos momentos',
+                  'warning'
+                );
+              }
+            })
+            .catch(() =>
               this.service.presentToast(
                 '¡Atención!',
                 'No podemos comunicarnos con la pasarela en estos momentos',
                 'warning'
-              );
-            }
-          })
-          .catch(() =>
-            this.service.presentToast(
-              '¡Atención!',
-              'No podemos comunicarnos con la pasarela en estos momentos',
-              'warning'
-            )
-          );
-
+              )
+            );
+        }
         break;
       case 'kushki':
-        // kushki.js.merchantId=1000000530206406278515561278883
-        // kushki.aplicaRecaudo.aplica=http://192.168.243.32:8080/aplicarRecaudo
+        {
+          // kushki.js.merchantId=1000000530206406278515561278883
+          // kushki.aplicaRecaudo.aplica=http://192.168.243.32:8080/aplicarRecaudo
 
-        this.modalService.open(modal);
+          this.modalService.open(modal);
 
-        transaccion['medio'] = 'kushki';
+          transaccion['medio'] = 'kushki';
 
-        const asyncCall2 = new Promise((resolve, reject) =>
-          this.service.crearTransaccionWompi(transaccion, resolve, reject)
-        );
-
-        asyncCall2
-          .then(() => {
-            this.rIdReference = reference;
-            var kushki = new KushkiCheckout({
-              kformId: 'GXInX0CWI',
-              form: 'kushki-pay-form',
-              publicMerchantId: 'beda4a9f308c487bb11d84e41f296db0',
-              amount: {
-                subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
-                iva: 0, // Set it to 0 in case the transaction has no taxes
-                subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
-              },
-              inTestEnvironment: true,
-              //callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
-            });
-            if (kushki._iFrame.readyState == 'complete') {
-              //iframe.contentWindow.alert("Hello");
-              kushki._iFrame.contentWindow.onload = function () {
-                alert('I am loaded');
-              };
-              // The loading is complete, call the function we want executed once the iframe is loaded
-              alert('I am here');
-            }
-          })
-          .catch(() =>
-            this.service.presentToast(
-              '¡Atención!',
-              'No podemos comunicarnos con la pasarela en estos momentos',
-              'warning'
-            )
+          const asyncCall2 = new Promise((resolve, reject) =>
+            this.service.crearTransaccionWompi(transaccion, resolve, reject)
           );
 
+          asyncCall2
+            .then(() => {
+              this.rIdReference = reference;
+              const kushki = new KushkiCheckout({
+                kformId: 'GXInX0CWI',
+                form: 'kushki-pay-form',
+                publicMerchantId: 'beda4a9f308c487bb11d84e41f296db0',
+                //merchant_id: '1000000530206406278515561278883',
+                amount: {
+                  subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
+                  iva: 0, // Set it to 0 in case the transaction has no taxes
+                  subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
+                },
+                currency: 'COP',
+                payment_methods: ['transfer'],
+                inTestEnvironment: true,
+                //callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
+              });
+              if (kushki._iFrame.readyState == 'complete') {
+                kushki._iFrame.contentWindow.onload = function () {
+                  alert('I am loaded');
+                };
+                // The loading is complete, call the function we want executed once the iframe is loaded
+                alert('I am here');
+              }
+            })
+            .catch(() =>
+              this.service.presentToast(
+                '¡Atención!',
+                'No podemos comunicarnos con la pasarela en estos momentos',
+                'warning'
+              )
+            );
+        }
         break;
 
       case 'coomeva':
