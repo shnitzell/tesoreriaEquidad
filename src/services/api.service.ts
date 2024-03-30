@@ -32,8 +32,8 @@ export class ApiService {
   }
 
   generateUUID() {
-    var d = new Date().getTime();
-    var d2 =
+    let d = new Date().getTime();
+    let d2 =
       (typeof performance !== 'undefined' &&
         performance.now &&
         performance.now() * 1000) ||
@@ -41,7 +41,7 @@ export class ApiService {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
       /[xy]/g,
       function (c) {
-        var r = Math.random() * 16;
+        let r = Math.random() * 16;
         if (d > 0) {
           r = (d + r) % 16 | 0;
           d = Math.floor(d / 16);
@@ -169,14 +169,14 @@ export class ApiService {
         this.httpClient
           .get(url, headers)
           .pipe(map((resp) => resp))
-          .subscribe(callBack, errorHandler);
+          .subscribe({ next: callBack, error: errorHandler });
         break;
 
       case 'POST':
         this.httpClient
           .post(url, params, headers)
           .pipe(map((resp) => resp))
-          .subscribe(callBack, errorHandler);
+          .subscribe({ next: callBack, error: errorHandler });
         break;
     }
   }
@@ -279,18 +279,26 @@ export class ApiService {
           return resp;
         })
       )
-      .subscribe(
-        callback,
-        () => {
-          this.presentToast(
-            'Error: ',
-            'No se ha podido comunicar con el servidor. Contacte soporte en caso de que persista',
-            'error'
-          );
+      .subscribe({
+        next: callback,
+        error: (err) => {
+          if (err.status == 404) {
+            this.presentToast(
+              '¡Atención!',
+              'La factura tienen un error que no nos permite generar para pago en bancos. Por favor contacte soporte',
+              'warning'
+            );
+          } else {
+            this.presentToast(
+              'Error: ',
+              'No se ha podido comunicar con el servidor. Contacte soporte en caso de que persista',
+              'error'
+            );
+          }
         },
-        () => {
+        complete: () => {
           //Swal.close();
-        }
-      );
+        },
+      });
   }
 }
