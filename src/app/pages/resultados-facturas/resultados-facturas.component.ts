@@ -201,12 +201,15 @@ export class ResultadosFacturasComponent implements OnInit {
           );
 
           transaccion['medio'] = 'wompi';
+          const keyPago = referenceFirstDocument.compania
+            .toString()
+            .toLowerCase();
 
           const checkout = new WidgetCheckout({
             currency: 'COP',
             amountInCents: this.sumarDeudaSeleccionada() * 100,
             reference: reference,
-            publicKey: environment.wompiKey,
+            publicKey: environment.wompiKey[keyPago],
             redirectUrl: `${environment.host}/transaccion?check=wompi&rID=${reference}`,
           });
 
@@ -218,7 +221,7 @@ export class ResultadosFacturasComponent implements OnInit {
             .then((response: any) => {
               if (response.success) {
                 checkout.open(function (result) {
-                  var transaction = result.transaction;
+                  const transaction = result.transaction;
                   console.log('Transaction ID: ', transaction.id);
                   console.log('Transaction object: ', transaction);
                 });
