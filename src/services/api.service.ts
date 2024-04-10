@@ -31,6 +31,16 @@ export class ApiService {
     a.click();
   }
 
+  async wompiIntegrity(cadenaConcatenada) {
+    const encondedText = new TextEncoder().encode(cadenaConcatenada);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encondedText);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
+    return hashHex;
+  }
+
   generateUUID() {
     let d = new Date().getTime();
     let d2 =

@@ -204,42 +204,50 @@ export class ResultadosFacturasComponent implements OnInit {
           const keyPago = referenceFirstDocument.compania
             .toString()
             .toLowerCase();
+          const cadenaConcatenada = `${reference}${
+            this.sumarDeudaSeleccionada() * 100
+          }COP${environment.wompiIntegrity[keyPago]}`;
 
-          const checkout = new WidgetCheckout({
-            currency: 'COP',
-            amountInCents: this.sumarDeudaSeleccionada() * 100,
-            reference: reference,
-            publicKey: environment.wompiKey[keyPago],
-            redirectUrl: `${environment.host}/transaccion?check=wompi&rID=${reference}`,
-          });
+          this.service.wompiIntegrity(cadenaConcatenada).then((integrity) => {
+            const checkout = new WidgetCheckout({
+              currency: 'COP',
+              amountInCents: this.sumarDeudaSeleccionada() * 100,
+              reference: reference,
+              publicKey: environment.wompiKey[keyPago],
+              signature: {
+                integrity,
+              },
+              redirectUrl: `${environment.host}/transaccion?check=wompi&rID=${reference}`,
+            });
 
-          const asyncCall = new Promise((resolve, reject) =>
-            this.service.crearTransaccionWompi(transaccion, resolve, reject)
-          );
+            const asyncCall = new Promise((resolve, reject) =>
+              this.service.crearTransaccionWompi(transaccion, resolve, reject)
+            );
 
-          asyncCall
-            .then((response: any) => {
-              if (response.success) {
-                checkout.open(function (result) {
-                  const transaction = result.transaction;
-                  console.log('Transaction ID: ', transaction.id);
-                  console.log('Transaction object: ', transaction);
-                });
-              } else {
+            asyncCall
+              .then((response: any) => {
+                if (response.success) {
+                  checkout.open(function (result) {
+                    const transaction = result.transaction;
+                    console.log('Transaction ID: ', transaction.id);
+                    console.log('Transaction object: ', transaction);
+                  });
+                } else {
+                  this.service.presentToast(
+                    '¡Atención!',
+                    'No podemos comunicarnos con la pasarela en estos momentos',
+                    'warning'
+                  );
+                }
+              })
+              .catch(() =>
                 this.service.presentToast(
                   '¡Atención!',
                   'No podemos comunicarnos con la pasarela en estos momentos',
                   'warning'
-                );
-              }
-            })
-            .catch(() =>
-              this.service.presentToast(
-                '¡Atención!',
-                'No podemos comunicarnos con la pasarela en estos momentos',
-                'warning'
-              )
-            );
+                )
+              );
+          });
         }
         break;
       case 'kushki':
