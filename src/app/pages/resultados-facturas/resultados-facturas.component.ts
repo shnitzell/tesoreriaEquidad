@@ -22,6 +22,8 @@ export class ResultadosFacturasComponent implements OnInit {
   public polizas: any = [];
   public rIdReference = '';
 
+  public kushkiApiRoute: string = environment.api;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -267,27 +269,17 @@ export class ResultadosFacturasComponent implements OnInit {
             .then(() => {
               this.rIdReference = reference;
               const kushki = new KushkiCheckout({
-                kformId: 'GXInX0CWI',
+                kformId: environment.kushki.kFormId,
                 form: 'kushki-pay-form',
-                publicMerchantId: 'beda4a9f308c487bb11d84e41f296db0',
-                //merchant_id: '1000000530206406278515561278883',
+                publicMerchantId: environment.kushki.publicMerchantId,
                 amount: {
                   subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
                   iva: 0, // Set it to 0 in case the transaction has no taxes
                   subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
                 },
                 currency: 'COP',
-                payment_methods: ['transfer'],
                 inTestEnvironment: true,
-                //callback_url: `${environment.host}/transaccion?check=kushki&rID=${reference}`,
               });
-              if (kushki._iFrame.readyState == 'complete') {
-                kushki._iFrame.contentWindow.onload = function () {
-                  alert('I am loaded');
-                };
-                // The loading is complete, call the function we want executed once the iframe is loaded
-                alert('I am here');
-              }
             })
             .catch(() =>
               this.service.presentToast(

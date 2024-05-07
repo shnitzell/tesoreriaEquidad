@@ -2,10 +2,15 @@
   <div class="modal-body">
     <form
       id="kushki-pay-form"
-      action="/tesoreria-services/api/aplicarRecaudo/aplicarKushki"
+      [action]="kushkiApiRoute + '/aplicarRecaudo/aplicarKushki'"
       method="post"
     >
       <input type="hidden" name="rID" [value]="rIdReference" />
+      <input
+        type="hidden"
+        name="transactionAmount"
+        [value]="sumarDeudaSeleccionada()"
+      />
     </form>
   </div>
 </ng-template>
@@ -29,7 +34,11 @@
           <thead>
             <tr>
               <th scope="col">
-                <span class="input-group-text selectable" (click)="selectall()">
+                <span
+                  onkeydown=""
+                  class="input-group-text selectable"
+                  (click)="selectall()"
+                >
                   <i class="ni ni-check-bold"></i>
                 </span>
               </th>
@@ -47,6 +56,7 @@
             <tr *ngFor="let detalle of polizas; let i = index">
               <th scope="row">
                 <input
+                  onkeydown=""
                   type="checkbox"
                   class="inputCheck"
                   [(ngModel)]="detalle.selected"
@@ -54,7 +64,7 @@
                   [disabled]="!detalle.permitePago || !canSelect(detalle)"
                 />
               </th>
-              <th>{{ detalle.compania }}</th>
+              <td>{{ detalle.compania }}</td>
               <td>{{ detalle.nombreProducto }}</td>
               <td>{{ detalle.codigoPoliza }}</td>
               <td>{{ detalle.certificadoPoliza }}</td>
@@ -84,7 +94,11 @@
                   [disabled]="!detalle.permiteFinancia"
                   (click)="financiaCon(detalle)"
                 >
-                  <img src="assets/images/financiar.png" width="35" />
+                  <img
+                    alt="boton de financia"
+                    src="assets/images/financiar.png"
+                    width="35"
+                  />
                 </button>
               </td>
             </tr>
@@ -128,7 +142,11 @@
                   (click)="pagarCon('kushki', asignarVend)"
                   [disabled]="sumarDeudaSeleccionada() == 0"
                 >
-                  <img src="assets/images/boton-pse-texto.png" width="60" />
+                  <img
+                    alt="Boton PSE"
+                    src="assets/images/boton-pse-texto.png"
+                    width="60"
+                  />
                 </button>
                 <button
                   style="border-color: transparent"
@@ -136,7 +154,11 @@
                   (click)="pagarCon('wompi')"
                   [disabled]="sumarDeudaSeleccionada() == 0"
                 >
-                  <img src="assets/images/banco-logo.jpg" width="200" />
+                  <img
+                    alt="Boton Bancolombia"
+                    src="assets/images/banco-logo.jpg"
+                    width="200"
+                  />
                 </button>
               </td>
             </tr>
