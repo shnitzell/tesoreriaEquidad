@@ -80,6 +80,33 @@ export class TransaccionComponent implements OnInit {
           }
         );
       } else if (this.checkoutMethod === 'kushki') {
+        const kushkiObject = params['token'];
+        try {
+          const kushkiTransactionResult = JSON.parse(atob(kushkiObject));
+          console.log(kushkiTransactionResult);
+          if (!kushkiTransactionResult.code) {
+            this.state = 'e';
+            this.valorPago = kushkiTransactionResult.details.subtotalIva0;
+            this.fechaPago = new Date(
+              kushkiTransactionResult.details.created
+            ).toISOString();
+            this.desdePago = kushkiTransactionResult.details.paymentBrand;
+            this.productoPago = kushkiTransactionResult.transactionReference;
+          } else {
+            this.state = 'f';
+            this.valorPago =
+              kushkiTransactionResult.details.approvedTransactionAmount;
+            this.fechaPago = new Date().toISOString();
+            this.desdePago = kushkiTransactionResult.details.paymentBrand;
+            this.productoPago = kushkiTransactionResult.transactionReference;
+          }
+        } catch (e) {
+          console.error('Ocurrió un fallo al intentar procesar:', e);
+          this.state = 'f';
+          this.fechaPago = new Date().toISOString();
+          this.desdePago = 'Ningún banco';
+          this.productoPago = 'No existe transacción';
+        }
       }
     });
   }
