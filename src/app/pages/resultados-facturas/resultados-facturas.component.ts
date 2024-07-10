@@ -16,11 +16,10 @@ declare var KushkiCheckout: any;
   styleUrls: ['./resultados-facturas.component.scss'],
 })
 export class ResultadosFacturasComponent implements OnInit {
-  private sessionId;
-
   public clienteName: string = '';
   public polizas: any = [];
-  public rIdReference = '';
+  public rIdReference: string = '';
+  public kAseguradoraPago: string = '';
 
   public kushkiApiRoute: string = environment.api;
 
@@ -32,7 +31,6 @@ export class ResultadosFacturasComponent implements OnInit {
     private service: ApiService,
     private sharing: SharingService
   ) {
-    //config.backdrop = 'static';
     config.keyboard = false;
     config.size = 'lg';
     config.windowClass = 'transparent-modal';
@@ -101,7 +99,9 @@ export class ResultadosFacturasComponent implements OnInit {
     return detalle.codigoCompania === poliza[0].codigoCompania;
   }
 
-  totalChanged() {}
+  totalChanged() {
+    //Info
+  }
 
   sumarDeuda() {
     let deuda: number = 0;
@@ -175,9 +175,7 @@ export class ResultadosFacturasComponent implements OnInit {
   }
 
   pagarCon(metodo, modal = null) {
-    //const reference = this.service.generateUUID();
     let polizasAPagar = [];
-
     for (let detalle of this.polizas) {
       if (detalle.permitePago && detalle.selected) {
         polizasAPagar.push(detalle);
@@ -186,6 +184,7 @@ export class ResultadosFacturasComponent implements OnInit {
 
     const referenceFirstDocument = polizasAPagar[0] ?? modal;
     const reference = `${referenceFirstDocument.codigoAgencia}-${referenceFirstDocument.asegurado}-${referenceFirstDocument.codigoPoliza}-${referenceFirstDocument.certificadoPoliza}`;
+    const keyPago = referenceFirstDocument.compania.toString().toLowerCase();
 
     const transaccion = {
       rID: reference,
@@ -203,19 +202,17 @@ export class ResultadosFacturasComponent implements OnInit {
           );
 
           transaccion['medio'] = 'wompi';
-          const keyPago = referenceFirstDocument.compania
-            .toString()
-            .toLowerCase();
+
           const cadenaConcatenada = `${reference}${
             this.sumarDeudaSeleccionada() * 100
-          }COP${environment.wompiIntegrity[keyPago]}`;
+          }COP${environment.aseguradora[keyPago].wompi.integrity}`;
 
           this.service.wompiIntegrity(cadenaConcatenada).then((integrity) => {
             const checkout = new WidgetCheckout({
               currency: 'COP',
               amountInCents: this.sumarDeudaSeleccionada() * 100,
               reference: reference,
-              publicKey: environment.wompiKey[keyPago],
+              publicKey: environment.aseguradora[keyPago].wompi.key[keyPago],
               signature: {
                 integrity,
               },
@@ -268,10 +265,12 @@ export class ResultadosFacturasComponent implements OnInit {
           asyncCall2
             .then(() => {
               this.rIdReference = reference;
+              this.kAseguradoraPago = keyPago;
               const kushki = new KushkiCheckout({
-                kformId: environment.kushki.kFormId,
+                kformId: environment.aseguradora[keyPago].kushki.kFormId,
                 form: 'kushki-pay-form',
-                publicMerchantId: environment.kushki.publicMerchantId,
+                publicMerchantId:
+                  environment.aseguradora[keyPago].kushki.publicMerchantId,
                 amount: {
                   subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
                   iva: 0, // Set it to 0 in case the transaction has no taxes
