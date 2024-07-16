@@ -24,10 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": [
-              "node_modules/html2canvas/dist/html2canvas.min.js",
-              "node_modules/jspdf/dist/jspdf.min.js"
-            ],
+            "scripts": ["node_modules/html2canvas/dist/html2canvas.min.js"],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
