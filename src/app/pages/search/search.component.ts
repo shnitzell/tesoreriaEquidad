@@ -24,22 +24,21 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  keyPressNumbers(event) {
+  keyPressNumbers(event: any) {
     var charCode = event.which ? event.which : event.keyCode;
     if (charCode === 13) {
       this.buscar();
     } else if (charCode < 48 || charCode > 57) {
       event.preventDefault();
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
   buscar() {
     if (this.searchInput == '') return;
     this.isSearching = true;
-    this.service.getFacturas(this.searchInput, (data) => {
+    this.service.getFacturas(this.searchInput, (data: any) => {
       this.isSearching = false;
       this.service.closeDialog();
       if (data.error === 'true') {
@@ -50,7 +49,7 @@ export class SearchComponent implements OnInit {
         );
       } else {
         try {
-          const resultados = data.bodyData.map((dat) => {
+          const resultados = data.bodyData.map((dat: any) => {
             return {
               ...dat,
               permiteFinancia: dat.permiteFinancia === 'true',
@@ -83,6 +82,6 @@ export class SearchComponent implements OnInit {
   }
 
   limpiar() {
-    this.searchInput = null;
+    this.searchInput = '';
   }
 }

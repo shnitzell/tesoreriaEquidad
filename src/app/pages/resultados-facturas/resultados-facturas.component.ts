@@ -52,7 +52,7 @@ export class ResultadosFacturasComponent implements OnInit {
           this.router.navigate(['/search']);
         } else {
           try {
-            const resultados = data.bodyData.map((dat) => {
+            const resultados = data.bodyData.map((dat: any) => {
               return {
                 ...dat,
                 permiteFinancia: dat.permiteFinancia === 'true',
@@ -85,7 +85,7 @@ export class ResultadosFacturasComponent implements OnInit {
   }
 
   selectall() {
-    this.polizas.map((data) => {
+    this.polizas.map((data: any) => {
       if (data.permitePago) {
         data.selected = !data.selected;
       }
@@ -93,8 +93,8 @@ export class ResultadosFacturasComponent implements OnInit {
     });
   }
 
-  canSelect(detalle) {
-    const poliza = this.polizas.filter((poliza) => poliza.selected);
+  canSelect(detalle: any) {
+    const poliza = this.polizas.filter((poliza: any) => poliza.selected);
     if (!poliza.length) return true;
     return detalle.codigoCompania === poliza[0].codigoCompania;
   }
@@ -125,8 +125,7 @@ export class ResultadosFacturasComponent implements OnInit {
     return deuda;
   }
 
-  descargar(detalle, idx) {
-    console.log('consultando');
+  descargar(detalle: any, idx: number) {
     this.service.getPDFBancos(
       { numeroId: this.clienteName, rowNum: idx + 1 },
       (data) => {
@@ -148,7 +147,7 @@ export class ResultadosFacturasComponent implements OnInit {
     );
   }
 
-  financiaCon(detalle) {
+  financiaCon(detalle: any) {
     if (detalle.permiteFinancia) {
       const alert = {
         title: '<strong>Selecciona la financiera de tu preferencia</strong>',
@@ -166,7 +165,7 @@ export class ResultadosFacturasComponent implements OnInit {
         },
       };
 
-      const entidadesCallback = (result) => {
+      const entidadesCallback = (result: any) => {
         if (result.isConfirmed) this.pagarCon('coomeva', detalle);
       };
 
@@ -174,7 +173,7 @@ export class ResultadosFacturasComponent implements OnInit {
     }
   }
 
-  pagarCon(metodo, modal = null) {
+  pagarCon(metodo: string, modal: any = null) {
     let polizasAPagar = [];
     for (let detalle of this.polizas) {
       if (detalle.permitePago && detalle.selected) {
@@ -184,7 +183,8 @@ export class ResultadosFacturasComponent implements OnInit {
 
     const referenceFirstDocument = polizasAPagar[0] ?? modal;
     const reference = `${referenceFirstDocument.codigoAgencia}-${referenceFirstDocument.asegurado}-${referenceFirstDocument.codigoPoliza}-${referenceFirstDocument.certificadoPoliza}`;
-    const keyPago = referenceFirstDocument.compania.toString().toLowerCase();
+    const keyPago: keyof typeof environment.aseguradora =
+      referenceFirstDocument.compania.toString().toLowerCase();
 
     const transaccion = {
       rID: reference,
@@ -212,7 +212,7 @@ export class ResultadosFacturasComponent implements OnInit {
               currency: 'COP',
               amountInCents: this.sumarDeudaSeleccionada() * 100,
               reference: reference,
-              publicKey: environment.aseguradora[keyPago].wompi.key[keyPago],
+              publicKey: environment.aseguradora[keyPago].wompi.key,
               signature: {
                 integrity,
               },
@@ -226,7 +226,7 @@ export class ResultadosFacturasComponent implements OnInit {
             asyncCall
               .then((response: any) => {
                 if (response.success) {
-                  checkout.open(function (result) {
+                  checkout.open(function (result: any) {
                     const transaction = result.transaction;
                     console.log('Transaction ID: ', transaction.id);
                     console.log('Transaction object: ', transaction);

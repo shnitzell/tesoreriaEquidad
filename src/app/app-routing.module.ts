@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ResultadosFacturasComponent } from './pages/resultados-facturas/resultados-facturas.component';
-
-import { SearchComponent } from './pages/search/search.component';
+import { RouterModule, Routes } from '@angular/router';
 import { TransaccionComponent } from './pages/transaccion/transaccion.component';
+import { ResultadosFacturasComponent } from './pages/resultados-facturas/resultados-facturas.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {
@@ -22,10 +21,6 @@ const routes: Routes = [
     path: 'confirm',
     component: TransaccionComponent,
   },
-  // {
-  //   path: 'landing',
-  //   component: LandingComponent
-  // },
   {
     path: '**',
     redirectTo: 'search',
@@ -33,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

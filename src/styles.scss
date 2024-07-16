@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 
 body {
   background-color: #ccddd096 !important;
+}
+
+:root {
+  --e-global-color-fd870f6: #2a6439;
 }
 
 :host {

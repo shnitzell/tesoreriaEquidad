@@ -135,7 +135,8 @@ export class TransaccionComponent implements OnInit {
 
   downloadPDF() {
     this.genPDF = true;
-    const DATA = document.getElementById('ticketTransaction');
+    const DATA: HTMLElement =
+      document.getElementById('ticketTransaction') || new HTMLElement();
     const doc = new jsPDF('p', 'pt', 'a4');
     const options = {
       background: 'white',

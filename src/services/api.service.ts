@@ -5,8 +5,6 @@ import { map } from 'rxjs/operators';
 
 import Swal from 'sweetalert2';
 
-declare var $: any;
-
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +21,7 @@ export class ApiService {
     this.headers.append('No-Auth', 'True');
   }
 
-  writeContents(content, fileName, contentType) {
+  writeContents(content: any, fileName: string, contentType: string) {
     const a = document.createElement('a');
     const file = new Blob([content], { type: contentType });
     a.href = URL.createObjectURL(file);
@@ -31,7 +29,7 @@ export class ApiService {
     a.click();
   }
 
-  async wompiIntegrity(cadenaConcatenada) {
+  async wompiIntegrity(cadenaConcatenada: string) {
     const encondedText = new TextEncoder().encode(cadenaConcatenada);
     const hashBuffer = await crypto.subtle.digest('SHA-256', encondedText);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -65,10 +63,10 @@ export class ApiService {
   }
 
   async presentAlertConfirm(
-    title,
-    mensaje,
+    title: string,
+    mensaje: string,
     additionalOpt: any = null,
-    callback = null
+    callback: (value: any) => void
   ) {
     let options = {
       title: title,
@@ -79,7 +77,7 @@ export class ApiService {
     Swal.fire(options).then(callback);
   }
 
-  async presentToast(title, mensaje, type = 'success') {
+  async presentToast(title: string, mensaje: string, type = 'success') {
     switch (type) {
       case 'success':
         Swal.fire({
@@ -135,12 +133,12 @@ export class ApiService {
   }
 
   async doRequest(
-    url,
-    params,
-    callBack,
-    type,
+    url: string,
+    params: string | object,
+    callBack: (value: any) => void,
+    type: string,
     headers: any = {},
-    fallback = null
+    fallback?: Function
   ) {
     let load = {
       title: 'Cargando',
@@ -158,7 +156,7 @@ export class ApiService {
     if (typeof params == 'string')
       if (!params.includes('DisableLoad')) Swal.fire(load);
 
-    const errorHandler = (er) => {
+    const errorHandler = (er: any) => {
       let disableEr = false;
       if (params.hasOwnProperty('DisableEr')) disableEr = true;
       if (typeof params == 'string')
@@ -200,7 +198,7 @@ export class ApiService {
     });
   }
 
-  getFacturas(userData: string, callBack) {
+  getFacturas(userData: string, callBack: (value: any) => void) {
     this.doRequest(
       `${this.api}/consultas/consultarPoliza?numeroId=${userData}`,
       { DisableLoad: true },
@@ -210,7 +208,7 @@ export class ApiService {
     );
   }
 
-  getIdToken(callBack) {
+  getIdToken(callBack: (value: any) => void) {
     this.doRequest(
       environment.coomeva.getTokenUrl,
       {
@@ -228,7 +226,11 @@ export class ApiService {
     );
   }
 
-  getGenURL(IdToken, genUrlObject, callBack) {
+  getGenURL(
+    IdToken: string,
+    genUrlObject: string | object,
+    callBack: (value: any) => void
+  ) {
     this.doRequest(
       environment.coomeva.getGeneratedUrl,
       genUrlObject,
@@ -244,7 +246,11 @@ export class ApiService {
     );
   }
 
-  getEstadoTransaccionWompi(transaction_id: string, callBack, fallback) {
+  getEstadoTransaccionWompi(
+    transaction_id: string,
+    callBack: (value: any) => void,
+    fallback: (value: any) => void
+  ) {
     this.doRequest(
       `${environment.wompiServer}/transactions/${transaction_id}`,
       { DisableLoad: true, DisableEr: true },
@@ -264,7 +270,11 @@ export class ApiService {
     );
   }
 
-  crearTransaccionWompi(transactionData: any, callback, fallback) {
+  crearTransaccionWompi(
+    transactionData: any,
+    callback: (value: any) => void,
+    fallback: (value: any) => void
+  ) {
     this.doRequest(
       `${environment.api}/aplicarRecaudo/crearTransaccion`,
       { DisableLoad: true, DisableEr: true, ...transactionData },
@@ -275,7 +285,7 @@ export class ApiService {
     );
   }
 
-  getPDFBancos(transactionData: any, callback) {
+  getPDFBancos(transactionData: any, callback: (value: any) => void) {
     let headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('userToken'),
     });
