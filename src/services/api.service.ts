@@ -198,13 +198,18 @@ export class ApiService {
     });
   }
 
-  getFacturas(userData: string, callBack: (value: any) => void) {
+  getFacturas(
+    userData: string,
+    callBack: (value: any) => void,
+    fallback?: () => void
+  ) {
     this.doRequest(
       `${this.api}/consultas/consultarPoliza?numeroId=${userData}`,
       { DisableLoad: true },
       callBack,
       'get',
-      { headers: this.getUserClaims() }
+      { headers: this.getUserClaims() },
+      fallback
     );
   }
 

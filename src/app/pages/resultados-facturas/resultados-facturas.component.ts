@@ -276,6 +276,9 @@ export class ResultadosFacturasComponent implements OnInit {
                   iva: 0, // Set it to 0 in case the transaction has no taxes
                   subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
                 },
+                metadata: {
+                  equidadReference: this.rIdReference,
+                },
                 currency: 'COP',
                 inTestEnvironment: true,
               });
