@@ -1,0 +1,519 @@
+/*
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 1.0.1
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+
+/*estilos para formulario de búsqueda y filtrado de eventos de formación y entrenamiento equidad Arl */
+.text-danger {
+  color: red;
+}
+.text-success {
+  color: green;
+}
+.text-center {
+  text-align: center;
+}
+.chevron-up:after {
+  content: "↑↑";
+}
+.chevron-down:after {
+  content: "↓↓";
+}
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #fff;
+  width: 100%;
+  max-width: 1240px;
+  min-height: 250px;
+}
+
+.cardshadow {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 12px 12px 45px rgba(168, 168, 168, 0.15);
+  margin: 20px;
+}
+
+.cardSearch {
+  width: 100%;
+  margin: 10px;
+  max-width: 1200px;
+  min-height: 280px;
+}
+.cardEventos {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.cardEventos-icon {
+  max-width: 54px;
+  margin: 10px auto;
+}
+.cardEventos-icon img {
+  width: 100%;
+  display: block;
+}
+.cardEventos-title {
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  margin: 10px auto;
+}
+.cardEventos-city {
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+}
+.cardEventos-city span {
+  font-weight: 700;
+}
+.cardEventos-p {
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+.cardEventos-modulo {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  padding: 10px 20px;
+}
+.cardEventos-modulo span {
+  font-weight: 700;
+}
+.btn-mas {
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 20px;
+  color: #3a8340;
+  text-decoration: none;
+  margin: 0 auto;
+  display: block;
+}
+.loading-overlay {
+  display: none;
+}
+/*formulario*/
+
+.input-wrapper {
+  position: relative;
+  width: 300px;
+}
+.input-wrapper input[type="text"],
+#fecha {
+  border-radius: 200px;
+  padding: 15px 20px;
+  border: 1px solid #333;
+  width: 350px;
+  margin: 10px 0;
+}
+
+.input-icon {
+  color: #191919;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -30px;
+  top: 50%;
+}
+select {
+  width: 350px;
+  margin: 10px 0;
+  border-radius: 200px;
+  padding: 15px 20px;
+  appearance: none; /* Quitamos el estilo por defecto del select */
+  padding-right: 20px; /* Añadimos un padding a la derecha para evitar que el caret se superponga con el texto */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M7.3 2.3L4 5.6 0.7 2.3C0.5 2.1 0.2 2.2 0.1 2.4 -0.1 2.6 -0.1 2.9 0.1 3.1L3.5 6.5C3.7 6.7 4 6.7 4.2 6.5L7.6 3.1C7.8 2.9 7.8 2.6 7.6 2.4 7.5 2.2 7.2 2.1 7.1 2.3z'/%3E%3C/svg%3E")
+    no-repeat right center; /* Añadimos el caret por defecto como fondo */
+  background-size: 10px; /* Ajustamos el tamaño del caret */
+  background-position-x: calc(
+    100% - 15px
+  ); /* Posicionamos el caret a la derecha del select */
+}
+.formblock {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 120px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.formblock-input-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 30px 0;
+  flex-wrap: wrap;
+}
+.formblock-input {
+  width: 100%;
+  max-width: 350px;
+  min-height: 80px;
+}
+
+button#organizar {
+  width: 190px;
+  height: 60px;
+  padding: 12px 25px;
+  color: #fff;
+  background-color: #3a8340;
+  border-radius: 200px;
+  border: none;
+  cursor: pointer;
+}
+button#organizar:hover {
+  background-color: #579e44;
+}
+button#filtrar {
+  width: 190px;
+  height: 60px;
+  padding: 12px 25px;
+  color: #fff;
+  background-color: #93b540;
+  border-radius: 200px;
+  border: none;
+  cursor: pointer;
+}
+button#borrar {
+  width: 280px;
+  height: 60px;
+  padding: 12px 25px;
+  color: #3a8340;
+  background-color: rgba(147, 181, 64, 0.2);
+  border-radius: 200px;
+  border: none;
+  cursor: pointer;
+}
+button#filtrar:hover {
+  background-color: #579e44;
+}
+button#borrar:hover {
+  background-color: #579e44;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .formblock-input {
+    width: 100%;
+    max-width: 300px;
+  }
+  .input-wrapper {
+    position: relative;
+    width: 270px;
+  }
+  .input-wrapper input[type="text"],
+  #fecha {
+    width: 300px;
+  }
+  .input-icon {
+    right: -10px;
+    top: 50%;
+  }
+  select {
+    width: 300px;
+  }
+  .formblock-input-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 0;
+    flex-wrap: wrap;
+  }
+  button#organizar {
+    width: 300px;
+  }
+  button#filtrar {
+    width: 300px;
+  }
+  button#borrar {
+    width: 300px;
+  }
+}
+
+/*estilos normativas*/
+
+.wrappernorma {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #fff;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 150px;
+  align-items: center;
+}
+.columwrap {
+  background: #fff;
+}
+.columwrap h4 {
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 50px;
+  font-family: sans-serif;
+}
+.cardshadow {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 12px 12px 45px rgba(168, 168, 168, 0.15);
+  margin: 20px;
+}
+
+form#normas-finder {
+  width: 445px;
+  min-height: 120px;
+}
+
+.formblock-input {
+  width: 100%;
+  max-width: 350px;
+  min-height: 80px;
+}
+
+.formblock {
+  width: 100%;
+  max-width: 1240px;
+  min-height: 100px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#normas-finder .input-icon {
+  color: #191919;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -80px;
+  top: 50%;
+}
+#normas-finder .input-wrapper input {
+  border-radius: 200px;
+  padding: 15px 20px;
+  border: 1px solid #333;
+  width: 400px;
+  margin: 10px 0;
+}
+
+#normas-finder .input-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+/*tabs*/
+
+.wrappernorma .tabs {
+  display: flex;
+  width: 100%;
+  min-width: 1200px;
+  flex-direction: row;
+}
+
+.tab {
+  border: none;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 20px 100px;
+  cursor: pointer;
+  margin-right: 5px;
+  text-align: center;
+  outline: none;
+  max-width: 300px;
+  height: 60px;
+}
+
+.tab.active {
+  background-color: green;
+  color: white;
+}
+.tab:hover {
+  background-color: green;
+  color: white;
+}
+
+.tab-content .content {
+  display: none;
+  padding: 20px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 10px auto;
+}
+
+.tab-content .content.active {
+  display: flex;
+  max-width: 1240px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.allnormas {
+  display: flex;
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+  flex-wrap: wrap;
+}
+#loading {
+  width: 40px;
+  margin: 200px auto;
+}
+
+div#wrapResults {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.wrapperlinea {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: #fff;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 150px;
+  align-items: center;
+}
+.lineamiento {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.container-doc {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+}
+.wrapperone {
+  margin: 0 auto;
+  width: 100%;
+}
+.tabis {
+  color: #fff;
+  background-color: #93b540;
+  padding: 15px;
+  margin: 10px auto;
+  border-radius: 10px 10px 0 0;
+}
+.techo {
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-radius: 10px 10px 0 0;
+  height: 20px;
+}
+.piso {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-radius: 0px 0px 10px 10px;
+  height: 20px;
+}
+
+.line {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px 40px;
+  align-items: center;
+  justify-content: space-between;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  height: auto;
+  gap: 100px;
+}
+.url a {
+  color: #3a8340;
+  font-weight: 700;
+}
+.ull a:hover {
+  color: #93b540;
+}
+@media (max-width: 768px) {
+  .tab {
+    padding: 10px;
+    height: 40px;
+    text-align: center;
+    font-size: 12px;
+    width: 150px;
+    margin: auto;
+  }
+  #normas-finder .input-wrapper input {
+    border-radius: 150px;
+    padding: 15px 20px;
+    border: 1px solid #333;
+    width: 250px;
+    margin: 10px 0;
+  }
+  .search-results {
+    font-size: 12px;
+    text-align: center;
+    width: 260px;
+  }
+  .columwrap {
+    width: 90%;
+  }
+  .wrappernorma {
+    display: flex;
+    justify-content: center;
+  }
+  #normas-finder .input-icon {
+    display: none;
+  }
+  .line {
+    border-bottom: 1px solid #f8f8f8;
+    font-size: 10px;
+    gap: 40px;
+  }
+}
+
+
+/*
+     FILE ARCHIVED ON 12:49:21 Oct 28, 2023 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:15:26 Aug 01, 2024.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.568
+  exclusion.robots: 0.021
+  exclusion.robots.policy: 0.011
+  esindex: 0.014
+  cdx.remote: 12.113
+  LoadShardBlock: 101.566 (3)
+  PetaboxLoader3.datanode: 100.948 (4)
+  PetaboxLoader3.resolve: 287.142 (2)
+  load_resource: 471.063
+*/
