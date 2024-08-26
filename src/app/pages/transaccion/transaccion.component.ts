@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 import { ApiService } from '../../../services/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-transaccion',
@@ -25,11 +26,7 @@ export class TransaccionComponent implements OnInit {
 
   public genPDF: boolean = false;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private service: ApiService
-  ) {}
+  constructor(private route: ActivatedRoute, private service: ApiService) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -80,33 +77,59 @@ export class TransaccionComponent implements OnInit {
           }
         );
       } else if (this.checkoutMethod === 'kushki') {
-        const kushkiObject = params['token'];
-        try {
-          const kushkiTransactionResult = JSON.parse(atob(kushkiObject));
-          console.log(kushkiTransactionResult);
-          if (!kushkiTransactionResult.code) {
-            this.state = 'e';
-            this.valorPago = kushkiTransactionResult.details.subtotalIva0;
-            this.fechaPago = new Date(
-              kushkiTransactionResult.details.created
-            ).toISOString();
-            this.desdePago = kushkiTransactionResult.details.paymentBrand;
-            this.productoPago = kushkiTransactionResult.transactionReference;
-          } else {
-            this.state = 'f';
-            this.valorPago =
-              kushkiTransactionResult.details.approvedTransactionAmount;
-            this.fechaPago = new Date().toISOString();
-            this.desdePago = kushkiTransactionResult.details.paymentBrand;
-            this.productoPago = kushkiTransactionResult.transactionReference;
-          }
-        } catch (e) {
-          console.error('Ocurrió un fallo al intentar procesar:', e);
-          this.state = 'f';
-          this.fechaPago = new Date().toISOString();
-          this.desdePago = 'Ningún banco';
-          this.productoPago = 'No existe transacción';
-        }
+        const kushkiToken = params['token'];
+        const kushkiInsu: keyof typeof environment.aseguradora =
+          params['insurance'];
+
+        this.service.doRequest(
+          `${environment.kushkiServer}/transfer/v1/status/${kushkiToken}`,
+          { DisableLoad: true },
+          (kushkiTransactionResult) => {
+            console.log(kushkiTransactionResult);
+
+            this.resultID = kushkiTransactionResult.metadata.equidadReference;
+
+            if (kushkiTransactionResult.status === 'approvedTransaction') {
+              this.state = 'e';
+              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+              this.fechaPago = new Date(
+                kushkiTransactionResult.created
+              ).toISOString();
+              this.desdePago = kushkiTransactionResult.transferProcessor;
+              this.productoPago = kushkiTransactionResult.transactionReference;
+            } else if (
+              kushkiTransactionResult.status === 'initializedTransaction'
+            ) {
+              this.state = 'p';
+              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+              this.fechaPago = new Date().toISOString();
+              this.desdePago = kushkiTransactionResult.transferProcessor;
+              this.productoPago = kushkiTransactionResult.transactionReference;
+            } else if (
+              kushkiTransactionResult.status === 'declinedTransaction'
+            ) {
+              this.state = 'd';
+              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+              this.fechaPago = new Date().toISOString();
+              this.desdePago = kushkiTransactionResult.transferProcessor;
+              this.productoPago = kushkiTransactionResult.transactionReference;
+            } else {
+              this.state = 'f';
+              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+              this.fechaPago = new Date().toISOString();
+              this.desdePago = kushkiTransactionResult.transferProcessor;
+              this.productoPago = kushkiTransactionResult.transactionReference;
+            }
+          },
+          'get',
+          {
+            headers: {
+              'Private-Merchant-Id':
+                environment.aseguradora[kushkiInsu].kushki.checkId,
+            },
+          },
+          () => {}
+        );
       }
     });
   }

@@ -6,6 +6,7 @@ export const environment = {
   host: 'https://serviciosqa.laequidadseguros.coop/tesoreria-services',
   api: 'https://serviciosqa.laequidadseguros.coop/tesoreria-services/api',
   wompiServer: 'https://sandbox.wompi.co/v1',
+  kushkiServer: 'https://api-uat.kushkipagos.com',
   aseguradora: {
     generales: {
       wompi: {
@@ -14,6 +15,7 @@ export const environment = {
       },
       kushki: {
         kFormId: 'GXInX0CWI',
+        checkId: '',
         publicMerchantId: 'beda4a9f308c487bb11d84e41f296db0',
       },
     },
@@ -24,6 +26,7 @@ export const environment = {
       },
       kushki: {
         kFormId: 'VgrLrH_CK',
+        checkId: '',
         publicMerchantId: 'd59933a708a54b979edd40b23f9a4ad4',
       },
     },

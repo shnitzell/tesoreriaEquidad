@@ -280,6 +280,7 @@ export class ResultadosFacturasComponent implements OnInit {
                   equidadReference: this.rIdReference,
                 },
                 currency: 'COP',
+                callback_url: `${environment.host}/transaccion?check=kushki&insurance=${keyPago}`,
                 inTestEnvironment: true,
               });
             })
