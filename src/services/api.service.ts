@@ -294,6 +294,18 @@ export class ApiService {
     let headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('userToken'),
     });
+    Swal.fire({
+      title: 'Generando Factura',
+      html: 'Espere por favor...',
+      allowOutsideClick: false,
+      allowEnterKey: false,
+      allowEscapeKey: false,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
     this.httpClient
       .post(`${this.api}/consultas/descargarFactura`, transactionData, {
         headers: headers,

@@ -129,8 +129,8 @@ export class ResultadosFacturasComponent implements OnInit {
     this.service.getPDFBancos(
       { numeroId: this.clienteName, rowNum: idx + 1 },
       (data) => {
+        this.service.closeDialog();
         try {
-          this.service.closeDialog();
           this.service.writeContents(
             data,
             'formulario_pago' + new Date().toISOString() + '.pdf',

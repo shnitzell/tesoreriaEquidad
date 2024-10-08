@@ -15,7 +15,7 @@ export const environment = {
       },
       kushki: {
         kFormId: 'GXInX0CWI',
-        checkId: '',
+        checkId: '37752510ae1c403cac7416984faa9b21',
         publicMerchantId: 'beda4a9f308c487bb11d84e41f296db0',
       },
     },
@@ -26,7 +26,7 @@ export const environment = {
       },
       kushki: {
         kFormId: 'VgrLrH_CK',
-        checkId: '',
+        checkId: '695410d55b004dba99ff2562a78f1df3',
         publicMerchantId: 'd59933a708a54b979edd40b23f9a4ad4',
       },
     },

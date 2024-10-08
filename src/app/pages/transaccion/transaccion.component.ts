@@ -80,9 +80,9 @@ export class TransaccionComponent implements OnInit {
         const kushkiToken = params['token'];
         const kushkiInsu: keyof typeof environment.aseguradora =
           params['insurance'];
-
+        const urlRequest = `${environment.kushkiServer}/transfer/v1/status/${kushkiToken}`;
         this.service.doRequest(
-          `${environment.kushkiServer}/transfer/v1/status/${kushkiToken}`,
+          `${environment.api}/aplicarRecaudo/transferStatus?proxyRequest=${urlRequest}&merchantId=${environment.aseguradora[kushkiInsu].kushki.checkId}`,
           { DisableLoad: true },
           (kushkiTransactionResult) => {
             console.log(kushkiTransactionResult);
@@ -123,10 +123,7 @@ export class TransaccionComponent implements OnInit {
           },
           'get',
           {
-            headers: {
-              'Private-Merchant-Id':
-                environment.aseguradora[kushkiInsu].kushki.checkId,
-            },
+            headers: {},
           },
           () => {}
         );
