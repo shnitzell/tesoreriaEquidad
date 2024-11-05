@@ -281,7 +281,7 @@ export class ResultadosFacturasComponent implements OnInit {
                 },
                 currency: 'COP',
                 callback_url: `${environment.host}/transaccion?check=kushki&insurance=${this.kAseguradoraPago}`,
-                inTestEnvironment: false,
+                inTestEnvironment: !environment.production,
               });
               console.info(
                 `Se ha creado URL de respuesta: ${kushkiCheck._params.callback_url}`

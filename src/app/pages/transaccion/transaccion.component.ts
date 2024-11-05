@@ -109,7 +109,7 @@ export class TransaccionComponent implements OnInit {
                 this.service.notifyKushkiBack({
                   check: this.checkoutMethod,
                   rID: this.resultID,
-                  wID: this.transactionID,
+                  wID: kushkiTransactionResult.transactionReference,
                 });
               } else if (
                 kushkiTransactionResult.status === 'declinedTransaction'
