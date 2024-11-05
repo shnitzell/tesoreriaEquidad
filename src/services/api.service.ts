@@ -275,6 +275,15 @@ export class ApiService {
     );
   }
 
+  notifyKushkiBack(transactionData: any) {
+    this.doRequest(
+      `${environment.api}/aplicarRecaudo/aplicarKushki`,
+      { DisableLoad: true, DisableEr: true, ...transactionData },
+      () => {},
+      'post'
+    );
+  }
+
   crearTransaccionWompi(
     transactionData: any,
     callback: (value: any) => void,

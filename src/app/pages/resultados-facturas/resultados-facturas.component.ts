@@ -7,8 +7,8 @@ import { environment } from '../../../environments/environment';
 import { ApiService } from '../../../services/api.service';
 import { SharingService } from '../../../services/sharing.service';
 
-declare var WidgetCheckout: any;
-declare var KushkiCheckout: any;
+declare let WidgetCheckout: any;
+declare let KushkiCheckout: any;
 
 @Component({
   selector: 'app-resultados-facturas',
@@ -265,24 +265,27 @@ export class ResultadosFacturasComponent implements OnInit {
           asyncCall2
             .then(() => {
               this.rIdReference = reference;
-              this.kAseguradoraPago = keyPago;
-              const kushki = new KushkiCheckout({
+              this.kAseguradoraPago = keyPago.toString();
+              const kushkiCheck = new KushkiCheckout({
                 kformId: environment.aseguradora[keyPago].kushki.kFormId,
                 form: 'kushki-pay-form',
                 publicMerchantId:
                   environment.aseguradora[keyPago].kushki.publicMerchantId,
                 amount: {
-                  subtotalIva: 0, // Set it to 0 in case the transaction has no taxes
-                  iva: 0, // Set it to 0 in case the transaction has no taxes
-                  subtotalIva0: this.sumarDeudaSeleccionada(), // Set the total amount of the transaction here in case the it has no taxes. Otherwise, set it to 0
+                  subtotalIva: 0,
+                  iva: 0,
+                  subtotalIva0: this.sumarDeudaSeleccionada(),
                 },
                 metadata: {
                   equidadReference: this.rIdReference,
                 },
                 currency: 'COP',
-                callback_url: `${environment.host}/transaccion?check=kushki&insurance=${keyPago}`,
-                inTestEnvironment: true,
+                callback_url: `${environment.host}/transaccion?check=kushki&insurance=${this.kAseguradoraPago}`,
+                inTestEnvironment: false,
               });
+              console.info(
+                `Se ha creado URL de respuesta: ${kushkiCheck._params.callback_url}`
+              );
             })
             .catch(() =>
               this.service.presentToast(

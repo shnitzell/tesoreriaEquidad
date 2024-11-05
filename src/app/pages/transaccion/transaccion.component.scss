@@ -1,69 +1,69 @@
 .pago-hecho {
-    background: grey;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
+  background: grey;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
 
-    i {
-        margin-left: auto;
-        margin-right: auto;
-    }
+  i {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    &.exitoso {
-        background: #c5ecbf;
-        color: #10b618;
-    }
+  &.exitoso {
+    background: #c5ecbf;
+    color: #10b618;
+  }
 
-    &.pendiente {
-        background: #ebecbf;
-        color: #b3b610;
-    }
+  &.pendiente {
+    background: #ebecbf;
+    color: #b3b610;
+  }
 
-    &.fallo {
-        background: #ecbfbf;
-        color: #b61010;
-    }
+  &.fallo {
+    background: #ecbfbf;
+    color: #b61010;
+  }
 }
 
 .ticket {
-    padding: 12px;
-    height: 500px;
+  padding: 12px;
+  height: 500px;
 
-    >div {
-        height: 100%;
-        align-items: center;
-        display: flex !important;
+  > div {
+    height: 100%;
+    align-items: center;
+    display: flex !important;
 
-        ~div {
-            display: block !important;
-        }
+    ~ div {
+      display: block !important;
     }
+  }
 }
 
 .desprendible {
-    border: 1px dashed #e0e0e0;
+  border: 1px dashed #e0e0e0;
 
-    >.row {
-        padding: 40px;
-        height: 38%;
+  > .row {
+    padding: 40px;
+    height: 38%;
 
-        ~.row {
-            height: 62%;
-        }
+    ~ .row {
+      height: 62%;
     }
-
+  }
 }
 
 .dateData {
-    width: min-content;
-    height: 25px;
-    background-color: #bbdfff;
-    color: #3b86e3;
-    border-radius: 60px;
+  width: max-content;
+  height: 25px;
+  background-color: #bbdfff;
+  color: #3b86e3;
+  border-radius: 60px;
+  margin: 0 auto;
 }
 
 p {
-    color: #9d9d9d;
+  color: #9d9d9d;
 }

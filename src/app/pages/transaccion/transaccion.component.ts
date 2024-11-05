@@ -84,41 +84,64 @@ export class TransaccionComponent implements OnInit {
         this.service.doRequest(
           `${environment.api}/aplicarRecaudo/transferStatus?proxyRequest=${urlRequest}&merchantId=${environment.aseguradora[kushkiInsu].kushki.checkId}`,
           { DisableLoad: true },
-          (kushkiTransactionResult) => {
-            console.log(kushkiTransactionResult);
-
-            this.resultID = kushkiTransactionResult.metadata.equidadReference;
-
-            if (kushkiTransactionResult.status === 'approvedTransaction') {
-              this.state = 'e';
-              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
-              this.fechaPago = new Date(
-                kushkiTransactionResult.created
-              ).toISOString();
-              this.desdePago = kushkiTransactionResult.transferProcessor;
-              this.productoPago = kushkiTransactionResult.transactionReference;
-            } else if (
-              kushkiTransactionResult.status === 'initializedTransaction'
-            ) {
-              this.state = 'p';
-              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
-              this.fechaPago = new Date().toISOString();
-              this.desdePago = kushkiTransactionResult.transferProcessor;
-              this.productoPago = kushkiTransactionResult.transactionReference;
-            } else if (
-              kushkiTransactionResult.status === 'declinedTransaction'
-            ) {
-              this.state = 'd';
-              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
-              this.fechaPago = new Date().toISOString();
-              this.desdePago = kushkiTransactionResult.transferProcessor;
-              this.productoPago = kushkiTransactionResult.transactionReference;
-            } else {
+          (kushkiTransaction) => {
+            if (kushkiTransaction.success != 'true') {
               this.state = 'f';
-              this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
               this.fechaPago = new Date().toISOString();
-              this.desdePago = kushkiTransactionResult.transferProcessor;
-              this.productoPago = kushkiTransactionResult.transactionReference;
+              this.desdePago = 'Ningún banco';
+              this.productoPago = 'No existe transacción';
+            } else {
+              const kushkiTransactionResult = JSON.parse(
+                kushkiTransaction.bodyData
+              );
+
+              this.resultID = kushkiTransactionResult.metadata.equidadReference;
+
+              if (kushkiTransactionResult.status === 'approvedTransaction') {
+                this.state = 'e';
+                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                this.fechaPago = new Date(
+                  kushkiTransactionResult.created
+                ).toISOString();
+                this.desdePago = kushkiTransactionResult.transferProcessor;
+                this.productoPago =
+                  kushkiTransactionResult.transactionReference;
+                this.service.notifyKushkiBack({
+                  check: this.checkoutMethod,
+                  rID: this.resultID,
+                  wID: this.transactionID,
+                });
+              } else if (
+                kushkiTransactionResult.status === 'declinedTransaction'
+              ) {
+                this.state = 'd';
+                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                this.fechaPago = new Date().toISOString();
+                this.desdePago = kushkiTransactionResult.transferProcessor;
+                this.productoPago =
+                  kushkiTransactionResult.transactionReference;
+                this.service.notifyKushkiBack({
+                  check: this.checkoutMethod,
+                  rID: this.resultID,
+                  wID: this.transactionID,
+                });
+              } else if (
+                kushkiTransactionResult.status === 'initializedTransaction'
+              ) {
+                this.state = 'p';
+                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                this.fechaPago = new Date().toISOString();
+                this.desdePago = kushkiTransactionResult.transferProcessor;
+                this.productoPago =
+                  kushkiTransactionResult.transactionReference;
+              } else {
+                this.state = 'f';
+                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                this.fechaPago = new Date().toISOString();
+                this.desdePago = kushkiTransactionResult.transferProcessor;
+                this.productoPago =
+                  kushkiTransactionResult.transactionReference;
+              }
             }
           },
           'get',
