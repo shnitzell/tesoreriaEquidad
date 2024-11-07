@@ -30,7 +30,8 @@ export class TransaccionComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.checkoutMethod = params['check'];
+      const checkoutValues = params['check'].split('_');
+      this.checkoutMethod = checkoutValues[0];
       this.resultID = params['rID'];
       this.transactionID = params['id'];
 
@@ -79,7 +80,7 @@ export class TransaccionComponent implements OnInit {
       } else if (this.checkoutMethod === 'kushki') {
         const kushkiToken = params['token'];
         const kushkiInsu: keyof typeof environment.aseguradora =
-          params['insurance'];
+          checkoutValues[1];
         const urlRequest = `${environment.kushkiServer}/transfer/v1/status/${kushkiToken}`;
         this.service.doRequest(
           `${environment.api}/aplicarRecaudo/transferStatus?proxyRequest=${urlRequest}&merchantId=${environment.aseguradora[kushkiInsu].kushki.checkId}`,

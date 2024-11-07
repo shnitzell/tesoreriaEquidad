@@ -278,9 +278,10 @@ export class ResultadosFacturasComponent implements OnInit {
                 },
                 metadata: {
                   equidadReference: this.rIdReference,
+                  insurance: this.kAseguradoraPago,
                 },
                 currency: 'COP',
-                callback_url: `${environment.host}/transaccion?check=kushki&insurance=${this.kAseguradoraPago}`,
+                callback_url: `${environment.host}/transaccion?check=kushki_${this.kAseguradoraPago}`,
                 inTestEnvironment: !environment.production,
               });
               console.info(
