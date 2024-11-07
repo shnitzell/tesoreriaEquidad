@@ -108,9 +108,10 @@ export class TransaccionComponent implements OnInit {
                 this.productoPago =
                   kushkiTransactionResult.transactionReference;
                 this.service.notifyKushkiBack({
-                  check: this.checkoutMethod,
+                  aseguradora: kushkiInsu,
                   rID: this.resultID,
                   wID: kushkiTransactionResult.transactionReference,
+                  kushkiToken,
                 });
               } else if (
                 kushkiTransactionResult.status === 'declinedTransaction'
@@ -122,9 +123,10 @@ export class TransaccionComponent implements OnInit {
                 this.productoPago =
                   kushkiTransactionResult.transactionReference;
                 this.service.notifyKushkiBack({
-                  check: this.checkoutMethod,
+                  aseguradora: kushkiInsu,
                   rID: this.resultID,
-                  wID: this.transactionID,
+                  wID: kushkiTransactionResult.transactionReference,
+                  kushkiToken,
                 });
               } else if (
                 kushkiTransactionResult.status === 'initializedTransaction'
