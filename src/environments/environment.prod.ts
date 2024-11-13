@@ -5,8 +5,8 @@ export const environment = {
 
   host: 'https://serviciosqa.laequidadseguros.coop/tesoreria-services',
   api: 'https://serviciosqa.laequidadseguros.coop/tesoreria-services/api',
-  wompiServer: 'https://sandbox.wompi.co/v1',
-  kushkiServer: 'https://api-uat.kushkipagos.com',
+  wompiServer: 'https://production.wompi.co/v1',
+  kushkiServer: 'https://api.kushkipagos.com',
   aseguradora: {
     generales: {
       wompi: {
@@ -14,9 +14,9 @@ export const environment = {
         integrity: 'prod_integrity_5uw2lvFvNk5VTrjLiEqHzgbfXhbhAKsr',
       },
       kushki: {
-        kFormId: 'GXInX0CWI',
-        checkId: '37752510ae1c403cac7416984faa9b21',
-        publicMerchantId: 'beda4a9f308c487bb11d84e41f296db0',
+        kFormId: 'Zi-9dlQrc',
+        checkId: 'b164fac68f9c433c98f150fddc56e183',
+        publicMerchantId: 'b9cfdff751cb4bbfa0f850a31be5eb11',
       },
     },
     vida: {
@@ -25,9 +25,9 @@ export const environment = {
         integrity: 'prod_integrity_37kHhJiMEhjZY66ZenShGYt4Z1HOoNy3',
       },
       kushki: {
-        kFormId: 'VgrLrH_CK',
-        checkId: '695410d55b004dba99ff2562a78f1df3',
-        publicMerchantId: 'd59933a708a54b979edd40b23f9a4ad4',
+        kFormId: 'dCrfT6N0y',
+        checkId: 'c3db60d32ac54b69944d8f8aa9f74b2a',
+        publicMerchantId: 'f04b135035b9498f91d12a837ba0d652',
       },
     },
   },
