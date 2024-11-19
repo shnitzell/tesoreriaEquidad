@@ -182,7 +182,7 @@ export class ResultadosFacturasComponent implements OnInit {
     }
 
     const referenceFirstDocument = polizasAPagar[0] ?? modal;
-    const reference = `${referenceFirstDocument.codigoAgencia}-${referenceFirstDocument.asegurado}-${referenceFirstDocument.codigoPoliza}-${referenceFirstDocument.certificadoPoliza}`;
+    const reference = `${referenceFirstDocument.uuid}`;
     const keyPago: keyof typeof environment.aseguradora =
       referenceFirstDocument.compania.toString().toLowerCase();
 
