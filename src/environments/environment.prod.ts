@@ -32,8 +32,8 @@ export const environment = {
     },
   },
   coomeva: {
-    getTokenUrl: 'https://f9dgaih2rj.execute-api.us-east-1.amazonaws.com',
-    getGeneratedUrl: 'https://f9dgaih2rj.execute-api.us-east-1.amazonaws.com',
+    getTokenUrl: 'https://s5s6nqk77i.execute-api.us-east-1.amazonaws.com',
+    getGeneratedUrl: 'https://s5s6nqk77i.execute-api.us-east-1.amazonaws.com',
     username: 'equi1234',
     password: 'lzD4$AF0',
   },
