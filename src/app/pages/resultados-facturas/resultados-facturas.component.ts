@@ -326,22 +326,23 @@ export class ResultadosFacturasComponent implements OnInit {
 
               asyncCall
                 .then(() => {
-                  const getIdTokenCallback = (idTokenObject: any) => {
+                  const genUrlCallback = (idTokenObject: any) => {
                     if (
                       idTokenObject.statusCode >= 200 &&
                       idTokenObject.statusCode <= 300
                     ) {
-                      const genUrlObject = {
+                      const genUrlObject = JSON.stringify({
                         monto: parseInt(modal.totalPagar),
                         referencia1: modal.codigoAgencia,
                         referencia2: modal.codigoPoliza,
                         referencia3: modal.certificadoPoliza,
-                      };
+                      });
 
                       this.service.getGenURL(
                         idTokenObject.data.IdToken,
                         genUrlObject,
                         (generatedUrlObject) => {
+                          generatedUrlObject = JSON.parse(generatedUrlObject);
                           if (
                             generatedUrlObject.statusCode >= 200 &&
                             generatedUrlObject.statusCode <= 300
@@ -368,12 +369,15 @@ export class ResultadosFacturasComponent implements OnInit {
                   };
 
                   if (this.service.IdTokenCoomeva) {
-                    getIdTokenCallback({
+                    genUrlCallback({
                       statusCode: 200,
                       data: { IdToken: this.service.IdTokenCoomeva },
                     });
                   } else {
-                    this.service.getIdToken(getIdTokenCallback);
+                    this.service.getIdToken((generatedUrlObject) => {
+                      generatedUrlObject = JSON.parse(generatedUrlObject);
+                      genUrlCallback(generatedUrlObject);
+                    });
                   }
                 })
                 .catch(() =>

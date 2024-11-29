@@ -215,17 +215,13 @@ export class ApiService {
 
   getIdToken(callBack: (value: any) => void) {
     this.doRequest(
-      environment.coomeva.getTokenUrl,
-      {
-        username: environment.coomeva.username,
-        password: environment.coomeva.password,
-      },
+      `${environment.api}/proxy${environment.coomeva.getTokenUrl}`,
+      {},
       callBack,
       'post',
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
         }),
       }
     );
@@ -237,15 +233,13 @@ export class ApiService {
     callBack: (value: any) => void
   ) {
     this.doRequest(
-      environment.coomeva.getGeneratedUrl,
-      genUrlObject,
+      `${environment.api}/proxy${environment.coomeva.getGeneratedUrl}`,
+      { requestToken: IdToken, coomevaObject: genUrlObject },
       callBack,
       'post',
       {
         headers: new HttpHeaders({
-          Authorization: 'Bearer ' + IdToken,
           'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
         }),
       }
     );

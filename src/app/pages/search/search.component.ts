@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../../../services/api.service';
@@ -9,7 +9,7 @@ import { SharingService } from '../../../services/sharing.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   title = 'tesoreriaEquidad';
 
   isSearching = false;
@@ -17,15 +17,13 @@ export class SearchComponent implements OnInit {
   searchInput: string = '';
 
   constructor(
-    private router: Router,
-    private service: ApiService,
-    private sharing: SharingService
+    private readonly router: Router,
+    private readonly service: ApiService,
+    private readonly sharing: SharingService
   ) {}
 
-  ngOnInit(): void {}
-
   keyPressNumbers(event: any) {
-    var charCode = event.which ? event.which : event.keyCode;
+    const charCode = event.which ? event.which : event.keyCode;
     if (charCode === 13) {
       this.buscar();
     } else if (charCode < 48 || charCode > 57) {
