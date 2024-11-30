@@ -342,7 +342,7 @@ export class ResultadosFacturasComponent implements OnInit {
                         idTokenObject.data.IdToken,
                         genUrlObject,
                         (generatedUrlObject) => {
-                          generatedUrlObject = JSON.parse(generatedUrlObject);
+                          generatedUrlObject = JSON.parse(generatedUrlObject.bodyData);
                           if (
                             generatedUrlObject.statusCode >= 200 &&
                             generatedUrlObject.statusCode <= 300
@@ -375,7 +375,7 @@ export class ResultadosFacturasComponent implements OnInit {
                     });
                   } else {
                     this.service.getIdToken((generatedUrlObject) => {
-                      generatedUrlObject = JSON.parse(generatedUrlObject);
+                      generatedUrlObject = JSON.parse(generatedUrlObject.bodyData);
                       genUrlCallback(generatedUrlObject);
                     });
                   }
