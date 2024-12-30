@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   host: 'http://localhost:8090',
-  api: 'http://localhost:8090/api',
+  api: 'http://yatchrent',
   wompiServer: 'https://sandbox.wompi.co/v1',
   kushkiServer: 'https://api-uat.kushkipagos.com',
   aseguradora: {

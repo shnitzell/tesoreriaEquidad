@@ -3,8 +3,8 @@ export const environment = {
   //host: 'http://192.168.241.250:30049/tesoreria-services',
   //api: 'http://192.168.241.250:30049/tesoreria-services/api',
 
-  host: 'https://serviciosqa.laequidadseguros.coop/tesoreria-services',
-  api: 'https://serviciosqa.laequidadseguros.coop/tesoreria-services/api',
+  host: 'https://servicios.laequidadseguros.coop/tesoreria-services',
+  api: 'https://servicios.laequidadseguros.coop/tesoreria-services/api',
   wompiServer: 'https://production.wompi.co/v1',
   kushkiServer: 'https://api.kushkipagos.com',
   aseguradora: {

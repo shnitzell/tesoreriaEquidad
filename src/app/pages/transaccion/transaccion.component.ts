@@ -81,78 +81,111 @@ export class TransaccionComponent implements OnInit {
         const kushkiToken = params['token'];
         const kushkiInsu: keyof typeof environment.aseguradora =
           checkoutValues[1];
-        const urlRequest = `${environment.kushkiServer}/transfer/v1/status/${kushkiToken}`;
-        this.service.doRequest(
-          `${environment.api}/aplicarRecaudo/transferStatus?proxyRequest=${urlRequest}&merchantId=${environment.aseguradora[kushkiInsu].kushki.checkId}`,
-          { DisableLoad: true },
-          (kushkiTransaction) => {
-            if (kushkiTransaction.success != 'true') {
-              this.state = 'f';
-              this.fechaPago = new Date().toISOString();
-              this.desdePago = 'Ningún banco';
-              this.productoPago = 'No existe transacción';
-            } else {
-              const kushkiTransactionResult = JSON.parse(
-                kushkiTransaction.bodyData
-              );
 
-              this.resultID = kushkiTransactionResult.metadata.equidadReference;
+        if (checkoutValues[2] === 'fallback') {
+          this.state = 'f';
+          this.fechaPago = new Date().toISOString();
+          this.desdePago = 'Ningún banco';
+          this.productoPago = 'No existe transacción';
+        } else if (checkoutValues[2] === 'card') {
+          const trsToken = params['trs'];
+          const decriptedToken = JSON.parse(atob(trsToken));
 
-              if (kushkiTransactionResult.status === 'approvedTransaction') {
-                this.state = 'e';
-                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
-                this.fechaPago = new Date(
-                  kushkiTransactionResult.created
-                ).toISOString();
-                this.desdePago = kushkiTransactionResult.transferProcessor;
-                this.productoPago =
-                  kushkiTransactionResult.transactionReference;
-                this.service.notifyKushkiBack({
-                  aseguradora: kushkiInsu,
-                  rID: this.resultID,
-                  wID: kushkiTransactionResult.transactionReference,
-                  kushkiToken,
-                });
-              } else if (
-                kushkiTransactionResult.status === 'declinedTransaction'
-              ) {
-                this.state = 'd';
-                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
-                this.fechaPago = new Date().toISOString();
-                this.desdePago = kushkiTransactionResult.transferProcessor;
-                this.productoPago =
-                  kushkiTransactionResult.transactionReference;
-                this.service.notifyKushkiBack({
-                  aseguradora: kushkiInsu,
-                  rID: this.resultID,
-                  wID: kushkiTransactionResult.transactionReference,
-                  kushkiToken,
-                });
-              } else if (
-                kushkiTransactionResult.status === 'initializedTransaction'
-              ) {
-                this.state = 'p';
-                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
-                this.fechaPago = new Date().toISOString();
-                this.desdePago = kushkiTransactionResult.transferProcessor;
-                this.productoPago =
-                  kushkiTransactionResult.transactionReference;
-              } else {
-                this.state = 'f';
-                this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
-                this.fechaPago = new Date().toISOString();
-                this.desdePago = kushkiTransactionResult.transferProcessor;
-                this.productoPago =
-                  kushkiTransactionResult.transactionReference;
-              }
+          if (decriptedToken.details.transactionType == 'sale') {
+            if (
+              decriptedToken.details.transactionStatus === 'approvedTransaction'
+            ) {
+              this.state = 'e';
+            } else if (
+              decriptedToken.details.transactionStatus === 'declinedTransaction'
+            ) {
+              this.state = 'd';
             }
-          },
-          'get',
-          {
-            headers: {},
-          },
-          () => {}
-        );
+          } else {
+            this.state = 'p';
+          }
+
+          this.valorPago = decriptedToken.details.amount.subtotalIva0;
+          this.fechaPago = new Date(
+            decriptedToken.details.created
+          ).toISOString();
+          this.desdePago = decriptedToken.details.processorBankName;
+          this.productoPago = decriptedToken.details.transactionReference;
+        } else {
+          const urlRequest = `${environment.kushkiServer}/transfer/v1/status/${kushkiToken}`;
+          this.service.doRequest(
+            `${environment.api}/aplicarRecaudo/transferStatus?proxyRequest=${urlRequest}&merchantId=${environment.aseguradora[kushkiInsu].kushki.checkId}`,
+            { DisableLoad: true },
+            (kushkiTransaction) => {
+              if (kushkiTransaction.success != 'true') {
+                this.state = 'f';
+                this.fechaPago = new Date().toISOString();
+                this.desdePago = 'Ningún banco';
+                this.productoPago = 'No existe transacción';
+              } else {
+                const kushkiTransactionResult = JSON.parse(
+                  kushkiTransaction.bodyData
+                );
+
+                this.resultID =
+                  kushkiTransactionResult.metadata.equidadReference;
+
+                if (kushkiTransactionResult.status === 'approvedTransaction') {
+                  this.state = 'e';
+                  this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                  this.fechaPago = new Date(
+                    kushkiTransactionResult.created
+                  ).toISOString();
+                  this.desdePago = kushkiTransactionResult.transferProcessor;
+                  this.productoPago =
+                    kushkiTransactionResult.transactionReference;
+                  this.service.notifyKushkiBack({
+                    aseguradora: kushkiInsu,
+                    rID: this.resultID,
+                    wID: kushkiTransactionResult.transactionReference,
+                    kushkiToken,
+                  });
+                } else if (
+                  kushkiTransactionResult.status === 'declinedTransaction'
+                ) {
+                  this.state = 'd';
+                  this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                  this.fechaPago = new Date().toISOString();
+                  this.desdePago = kushkiTransactionResult.transferProcessor;
+                  this.productoPago =
+                    kushkiTransactionResult.transactionReference;
+                  this.service.notifyKushkiBack({
+                    aseguradora: kushkiInsu,
+                    rID: this.resultID,
+                    wID: kushkiTransactionResult.transactionReference,
+                    kushkiToken,
+                  });
+                } else if (
+                  kushkiTransactionResult.status === 'initializedTransaction'
+                ) {
+                  this.state = 'p';
+                  this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                  this.fechaPago = new Date().toISOString();
+                  this.desdePago = kushkiTransactionResult.transferProcessor;
+                  this.productoPago =
+                    kushkiTransactionResult.transactionReference;
+                } else {
+                  this.state = 'f';
+                  this.valorPago = kushkiTransactionResult.amount.subtotalIva0;
+                  this.fechaPago = new Date().toISOString();
+                  this.desdePago = kushkiTransactionResult.transferProcessor;
+                  this.productoPago =
+                    kushkiTransactionResult.transactionReference;
+                }
+              }
+            },
+            'get',
+            {
+              headers: {},
+            },
+            () => {}
+          );
+        }
       }
     });
   }
