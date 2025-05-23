@@ -24,12 +24,12 @@ export class ResultadosFacturasComponent implements OnInit {
   public kushkiApiRoute: string = environment.api;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
     config: NgbModalConfig,
-    private modalService: NgbModal,
-    private service: ApiService,
-    private sharing: SharingService
+    private readonly modalService: NgbModal,
+    private readonly service: ApiService,
+    private readonly sharing: SharingService
   ) {
     config.keyboard = false;
     config.size = 'lg';
@@ -82,15 +82,6 @@ export class ResultadosFacturasComponent implements OnInit {
       });
     }
     this.polizas = this.sharing.sharingValue || [];
-  }
-
-  selectall() {
-    this.polizas.map((data: any) => {
-      if (data.permitePago) {
-        data.selected = !data.selected;
-      }
-      return data;
-    });
   }
 
   canSelect(detalle: any) {
@@ -186,6 +177,10 @@ export class ResultadosFacturasComponent implements OnInit {
     const keyPago: keyof typeof environment.aseguradora =
       referenceFirstDocument.compania.toString().toLowerCase();
 
+    this.kAseguradoraPago = referenceFirstDocument.compania
+      .toString()
+      .toLowerCase();
+
     const transaccion = {
       rID: reference,
       wID: '117653-1664468208-49142',
@@ -265,28 +260,39 @@ export class ResultadosFacturasComponent implements OnInit {
           asyncCall2
             .then(() => {
               this.rIdReference = reference;
-              this.kAseguradoraPago = keyPago.toString();
-              const kushkiCheck = new KushkiCheckout({
-                kformId: environment.aseguradora[keyPago].kushki.kFormId,
-                form: 'kushki-pay-form',
-                publicMerchantId:
-                  environment.aseguradora[keyPago].kushki.publicMerchantId,
-                amount: {
-                  subtotalIva: 0,
-                  iva: 0,
-                  subtotalIva0: this.sumarDeudaSeleccionada(),
-                },
-                metadata: {
-                  equidadReference: this.rIdReference,
-                  insurance: this.kAseguradoraPago,
-                },
-                currency: 'COP',
-                callback_url: `${environment.host}/transaccion?check=kushki_${this.kAseguradoraPago}`,
-                inTestEnvironment: !environment.production,
-              });
-              console.info(
-                `Se ha creado URL de respuesta: ${kushkiCheck._params.callback_url}`
-              );
+              if (
+                this.kAseguradoraPago &&
+                this.kAseguradoraPago.trim() !== ''
+              ) {
+                const kushkiCheck = new KushkiCheckout({
+                  kformId: environment.aseguradora[keyPago].kushki.kFormId,
+                  form: 'kushki-pay-form',
+                  publicMerchantId:
+                    environment.aseguradora[keyPago].kushki.publicMerchantId,
+                  amount: {
+                    subtotalIva: 0,
+                    iva: 0,
+                    subtotalIva0: this.sumarDeudaSeleccionada(),
+                  },
+                  metadata: {
+                    equidadReference: this.rIdReference,
+                    insurance: this.kAseguradoraPago,
+                  },
+                  currency: 'COP',
+                  callback_url: `${environment.host}/transaccion?check=kushki_${this.kAseguradoraPago}`,
+                  inTestEnvironment: !environment.production,
+                });
+                console.info(
+                  `Se ha creado URL de respuesta: ${kushkiCheck._params.callback_url}`
+                );
+              } else {
+                this.service.presentToast(
+                  '¡Atención!',
+                  'No podemos comunicarnos con la pasarela en estos momentos, recargue la página. ' +
+                    'Si el problema persiste, por favor comuníquese con Seguros La Equidad COD: KASNP-001',
+                  'warning'
+                );
+              }
             })
             .catch(() =>
               this.service.presentToast(
@@ -342,7 +348,9 @@ export class ResultadosFacturasComponent implements OnInit {
                         idTokenObject.data.IdToken,
                         genUrlObject,
                         (generatedUrlObject) => {
-                          generatedUrlObject = JSON.parse(generatedUrlObject.bodyData);
+                          generatedUrlObject = JSON.parse(
+                            generatedUrlObject.bodyData
+                          );
                           if (
                             generatedUrlObject.statusCode >= 200 &&
                             generatedUrlObject.statusCode <= 300
@@ -375,7 +383,9 @@ export class ResultadosFacturasComponent implements OnInit {
                     });
                   } else {
                     this.service.getIdToken((generatedUrlObject) => {
-                      generatedUrlObject = JSON.parse(generatedUrlObject.bodyData);
+                      generatedUrlObject = JSON.parse(
+                        generatedUrlObject.bodyData
+                      );
                       genUrlCallback(generatedUrlObject);
                     });
                   }
