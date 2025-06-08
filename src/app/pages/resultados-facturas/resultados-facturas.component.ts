@@ -294,13 +294,14 @@ export class ResultadosFacturasComponent implements OnInit {
                 );
               }
             })
-            .catch(() =>
+            .catch((e) => {
+              console.error('Error al crear transacción:', e);
               this.service.presentToast(
                 '¡Atención!',
                 'No podemos comunicarnos con la pasarela en estos momentos',
                 'warning'
-              )
-            );
+              );
+            });
         }
         break;
 
